@@ -2,28 +2,28 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pokemon/models/pokemon_model.dart';
+import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/utils/calc_util.dart';
 import 'package:pokemon/utils/constants.dart';
 import 'package:pokemon/widgets/card_in_card_widget.dart';
 import 'package:pokemon/widgets/line_process_widget.dart';
 
-class PokemonStatWidget extends StatefulWidget {
-  final PokemonModel pokemon;
+class PokeStatWidget extends StatefulWidget {
+  final PokeModel poke;
 
-  PokemonStatWidget({Key key, @required this.pokemon}) : super(key: key);
+  PokeStatWidget({Key key, @required this.poke}) : super(key: key);
 
   @override
-  PokemonStatState createState() {
-    return PokemonStatState(pokemon);
+  PokeStatState createState() {
+    return PokeStatState(poke);
   }
 }
 
-class PokemonStatState extends State<PokemonStatWidget>
+class PokeStatState extends State<PokeStatWidget>
     with SingleTickerProviderStateMixin {
-  final PokemonModel pokemon;
+  final PokeModel poke;
 
-  PokemonStatState(this.pokemon);
+  PokeStatState(this.poke);
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +51,12 @@ class PokemonStatState extends State<PokemonStatWidget>
         CustomPaint(
           child: Container(),
           painter: HexagonTextPainter(texts: [
-            '${Constants.HP}\n${pokemon.speciesStrengths[Constants.HP]}',
-            '${Constants.ATK}\n${pokemon.speciesStrengths[Constants.ATK]}',
-            '${Constants.DEF}\n${pokemon.speciesStrengths[Constants.DEF]}',
-            '${Constants.SPD}\n${pokemon.speciesStrengths[Constants.SPD]}',
-            '${Constants.SAT}\n${pokemon.speciesStrengths[Constants.SAT]}',
-            '${Constants.SDE}\n${pokemon.speciesStrengths[Constants.SDE]}'
+            '${Constants.HP}\n${poke.speciesStrengths[Constants.HP]}',
+            '${Constants.ATK}\n${poke.speciesStrengths[Constants.ATK]}',
+            '${Constants.DEF}\n${poke.speciesStrengths[Constants.DEF]}',
+            '${Constants.SPD}\n${poke.speciesStrengths[Constants.SPD]}',
+            '${Constants.SAT}\n${poke.speciesStrengths[Constants.SAT]}',
+            '${Constants.SDE}\n${poke.speciesStrengths[Constants.SDE]}'
           ]),
         ),
         Padding(
@@ -75,12 +75,12 @@ class PokemonStatState extends State<PokemonStatWidget>
               child: Container(),
               painter:
                   HexagonClipPainter(paintColor: Color(0x80C39CD8), precents: [
-                pokemon.speciesStrengths[Constants.HP] / 255,
-                pokemon.speciesStrengths[Constants.ATK] / 255,
-                pokemon.speciesStrengths[Constants.DEF] / 255,
-                pokemon.speciesStrengths[Constants.SPD] / 255,
-                pokemon.speciesStrengths[Constants.SAT] / 255,
-                pokemon.speciesStrengths[Constants.SDE] / 255,
+                poke.speciesStrengths[Constants.HP] / 255,
+                poke.speciesStrengths[Constants.ATK] / 255,
+                poke.speciesStrengths[Constants.DEF] / 255,
+                poke.speciesStrengths[Constants.SPD] / 255,
+                poke.speciesStrengths[Constants.SAT] / 255,
+                poke.speciesStrengths[Constants.SDE] / 255,
               ]),
             ),
           ]),
@@ -92,20 +92,20 @@ class PokemonStatState extends State<PokemonStatWidget>
   Widget _buildBasePoints() {
     return CardInCardWidget(
       text: '取得基础点数',
-      color: Constants.POKEMON_COLOR_MAP[pokemon.types[0]],
+      color: Constants.POKE_COLOR_MAP[poke.types[0]],
       child: Row(children: [
-        _buildTextCard('${Constants.HP}\n${pokemon.basePoints[Constants.HP]}',
-            Constants.POKEMON_COLOR_MAP[Constants.HP]),
-        _buildTextCard('${Constants.ATK}\n${pokemon.basePoints[Constants.ATK]}',
-            Constants.POKEMON_COLOR_MAP[Constants.ATK]),
-        _buildTextCard('${Constants.DEF}\n${pokemon.basePoints[Constants.DEF]}',
-            Constants.POKEMON_COLOR_MAP[Constants.DEF]),
-        _buildTextCard('${Constants.SAT}\n${pokemon.basePoints[Constants.SAT]}',
-            Constants.POKEMON_COLOR_MAP[Constants.SAT]),
-        _buildTextCard('${Constants.SDE}\n${pokemon.basePoints[Constants.SDE]}',
-            Constants.POKEMON_COLOR_MAP[Constants.SDE]),
-        _buildTextCard('${Constants.SPD}\n${pokemon.basePoints[Constants.SPD]}',
-            Constants.POKEMON_COLOR_MAP[Constants.SPD]),
+        _buildTextCard('${Constants.HP}\n${poke.basePoints[Constants.HP]}',
+            Constants.POKE_COLOR_MAP[Constants.HP]),
+        _buildTextCard('${Constants.ATK}\n${poke.basePoints[Constants.ATK]}',
+            Constants.POKE_COLOR_MAP[Constants.ATK]),
+        _buildTextCard('${Constants.DEF}\n${poke.basePoints[Constants.DEF]}',
+            Constants.POKE_COLOR_MAP[Constants.DEF]),
+        _buildTextCard('${Constants.SAT}\n${poke.basePoints[Constants.SAT]}',
+            Constants.POKE_COLOR_MAP[Constants.SAT]),
+        _buildTextCard('${Constants.SDE}\n${poke.basePoints[Constants.SDE]}',
+            Constants.POKE_COLOR_MAP[Constants.SDE]),
+        _buildTextCard('${Constants.SPD}\n${poke.basePoints[Constants.SPD]}',
+            Constants.POKE_COLOR_MAP[Constants.SPD]),
       ]),
     );
   }
@@ -113,7 +113,7 @@ class PokemonStatState extends State<PokemonStatWidget>
   Widget _buildSpeciesStrength() {
     return CardInCardWidget(
       text: '能力值',
-      color: Constants.POKEMON_COLOR_MAP[pokemon.types[0]],
+      color: Constants.POKE_COLOR_MAP[poke.types[0]],
       child: Card(
         child: Table(
           columnWidths: const {
@@ -130,7 +130,7 @@ class PokemonStatState extends State<PokemonStatWidget>
           children: [
             TableRow(children: [
               Container(
-                color: Constants.POKEMON_COLOR_MAP[pokemon.types[0]],
+                color: Constants.POKE_COLOR_MAP[poke.types[0]],
                 padding: const EdgeInsets.all(2.0),
                 alignment: Alignment.center,
                 child: Text(
@@ -144,7 +144,7 @@ class PokemonStatState extends State<PokemonStatWidget>
                 ),
               ),
               Container(
-                color: Constants.POKEMON_COLOR_MAP[pokemon.types[0]],
+                color: Constants.POKE_COLOR_MAP[poke.types[0]],
                 padding: const EdgeInsets.all(2.0),
                 alignment: Alignment.center,
                 child: Text(
@@ -158,7 +158,7 @@ class PokemonStatState extends State<PokemonStatWidget>
                 ),
               ),
               Container(
-                color: Constants.POKEMON_COLOR_MAP[pokemon.types[0]],
+                color: Constants.POKE_COLOR_MAP[poke.types[0]],
                 padding: const EdgeInsets.all(2.0),
                 alignment: Alignment.center,
                 child: Text(
@@ -188,18 +188,20 @@ class PokemonStatState extends State<PokemonStatWidget>
     return [
       LineProcessWidget(
           keyword: text,
-          valueword: pokemon.speciesStrengths[text],
-          process: pokemon.speciesStrengths[text] / 255,
-          color: Constants.POKEMON_COLOR_MAP[text]),
+          valueword: poke.speciesStrengths[text],
+          process: poke.speciesStrengths[text] / 255,
+          color: Constants.POKE_COLOR_MAP[text]),
       Container(
+        padding: const EdgeInsets.all(2.0),
         alignment: Alignment.center,
         child: Text(
-            '${CalcUtil.CalcPower(1, pokemon.speciesStrengths[text], 0, 0, 50, 0.9)} ~ ${CalcUtil.CalcPower(1, pokemon.speciesStrengths[text], 31, 252, 50, 1.1)}'),
+            '${CalcUtil.CalcPower(1, poke.speciesStrengths[text], 0, 0, 50, 0.9)} ~ ${CalcUtil.CalcPower(1, poke.speciesStrengths[text], 31, 252, 50, 1.1)}'),
       ),
       Container(
+        padding: const EdgeInsets.all(2.0),
         alignment: Alignment.center,
         child: Text(
-            '${CalcUtil.CalcPower(1, pokemon.speciesStrengths[text], 0, 0, 100, 0.9)} ~ ${CalcUtil.CalcPower(1, pokemon.speciesStrengths[text], 31, 252, 100, 1.1)}'),
+            '${CalcUtil.CalcPower(1, poke.speciesStrengths[text], 0, 0, 100, 0.9)} ~ ${CalcUtil.CalcPower(1, poke.speciesStrengths[text], 31, 252, 100, 1.1)}'),
       ),
     ];
   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/pages/pokemon_item_page.dart';
+import 'package:pokemon/pages/poke_item_page.dart';
 import 'package:pokemon/utils/constants.dart';
-import 'package:pokemon/widgets/pokemon_ball_widget.dart';
+import 'package:pokemon/widgets/poke_ball_widget.dart';
 import 'package:pokemon/widgets/search_text_field_bar.dart';
 
 import 'item_page.dart';
 import 'move_page.dart';
-import 'pokemon_list_page.dart';
+import 'poke_list_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,9 +17,9 @@ class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List _titles = ['宝可梦', '招式', '道具'];
   List _pages = [
-    PokemonListPage(),
-    PokemonItemPage(pokemonName: '妙蛙种子'),
-    PokemonItemPage(pokemonName: '妙蛙种子'),
+    PokeListPage(),
+    PokeItemPage(pokeName: '妙蛙种子'),
+    PokeItemPage(pokeName: '妙蛙种子'),
   ];
 
   @override
@@ -58,7 +58,7 @@ class HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         //悬浮按钮
-        child: PokemonBallWidget(),
+        child: PokeBallWidget(),
         backgroundColor: Colors.white,
         onPressed: () => {_onItemTapped(0)},
       ),

@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
-import 'package:pokemon/models/pokemon_model.dart';
-import 'package:pokemon/modules/pokemon_module.dart';
-import 'package:pokemon/pages/pokemon_item_page.dart';
+import 'package:pokemon/models/poke_model.dart';
+import 'package:pokemon/modules/poke_module.dart';
+import 'package:pokemon/pages/poke_item_page.dart';
 
-class PokemonListPage extends StatefulWidget {
-  PokemonListPage({Key key}) : super(key: key);
+class PokeListPage extends StatefulWidget {
+  PokeListPage({Key key}) : super(key: key);
 
   @override
-  PokemonListPageState createState() {
-    return PokemonListPageState();
+  PokeListPageState createState() {
+    return PokeListPageState();
   }
 }
 
-class PokemonListPageState extends State<PokemonListPage> {
+class PokeListPageState extends State<PokeListPage> {
   @override
   void initState() {
     super.initState();
-    PokemonModule.fetchList().whenComplete(() => setState(() {}));
+    PokeModule.fetchList().whenComplete(() => setState(() {}));
   }
 
   @override
@@ -30,12 +30,12 @@ class PokemonListPageState extends State<PokemonListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: PokemonModule.instance.pokemons.length > 0
+      body: PokeModule.instance.pokes.length > 0
           ? new ListView.builder(
-              itemCount: PokemonModule.instance.pokemons.length,
+              itemCount: PokeModule.instance.pokes.length,
               itemBuilder: (context, index) {
                 return _buildListItemCard(
-                    context, PokemonModule.instance.pokemons[index]);
+                    context, PokeModule.instance.pokes[index]);
               })
           : Center(
               child: Loading(
@@ -47,7 +47,7 @@ class PokemonListPageState extends State<PokemonListPage> {
     );
   }
 
-  _buildListItemCard(BuildContext context, PokemonModel model) {
+  _buildListItemCard(BuildContext context, PokeModel model) {
     return new GestureDetector(
       onTap: () => _navigateToItem(context, model.name),
       child: new Card(
@@ -112,7 +112,7 @@ class PokemonListPageState extends State<PokemonListPage> {
 
   _navigateToItem(BuildContext context, String name) {
     Navigator.of(context).push(MaterialPageRoute(builder: (content) {
-      return PokemonItemPage(pokemonName: name);
+      return PokeItemPage(pokeName: name);
     }));
   }
 }

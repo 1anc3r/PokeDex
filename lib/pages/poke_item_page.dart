@@ -1,43 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
-import 'package:pokemon/models/pokemon_model.dart';
-import 'package:pokemon/modules/pokemon_module.dart';
+import 'package:pokemon/models/poke_model.dart';
+import 'package:pokemon/modules/poke_module.dart';
 import 'package:pokemon/utils/constants.dart';
-import 'package:pokemon/widgets/pokemon_ball_widget.dart';
-import 'package:pokemon/widgets/pokemon_info_widget.dart';
-import 'package:pokemon/widgets/pokemon_stat_widget.dart';
+import 'package:pokemon/widgets/poke_ball_widget.dart';
+import 'package:pokemon/widgets/poke_info_widget.dart';
+import 'package:pokemon/widgets/poke_stat_widget.dart';
 
-class PokemonItemPage extends StatefulWidget {
-  final String pokemonName;
+class PokeItemPage extends StatefulWidget {
+  final String pokeName;
 
-  PokemonItemPage({Key key, @required this.pokemonName}) : super(key: key);
+  PokeItemPage({Key key, @required this.pokeName}) : super(key: key);
 
   @override
-  PokemonItemPageState createState() {
-    return PokemonItemPageState(pokemonName);
+  PokeItemPageState createState() {
+    return PokeItemPageState(pokeName);
   }
 }
 
-class PokemonItemPageState extends State<PokemonItemPage>
+class PokeItemPageState extends State<PokeItemPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   List tabBarTexts = ["基础", "能力", "招式", "介绍"];
   List tabBarViews = <Widget>[];
 
-  final String pokemonName;
-  PokemonModel pokemon;
+  final String pokeName;
+  PokeModel poke;
 
-  PokemonItemPageState(this.pokemonName);
+  PokeItemPageState(this.pokeName);
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: tabBarTexts.length, vsync: this);
-    PokemonModule.fetchItem(pokemonName)
-        .then((model) => {pokemon = model})
-        .then((model) => {
-              PokemonModule.fetchItemHQImg(pokemon)
+    PokeModule.fetchItem(pokeName).then((model) => {poke = model}).then(
+        (model) => {
+              PokeModule.fetchItemHQImg(poke)
                   .whenComplete(() => setState(() {}))
             });
   }
@@ -50,8 +49,8 @@ class PokemonItemPageState extends State<PokemonItemPage>
   @override
   Widget build(BuildContext context) {
     tabBarViews = <Widget>[
-      pokemon != null
-          ? PokemonInfoWidget(pokemon: pokemon)
+      poke != null
+          ? PokeInfoWidget(poke: poke)
           : Center(
               child: Loading(
                 indicator: BallPulseIndicator(),
@@ -59,8 +58,8 @@ class PokemonItemPageState extends State<PokemonItemPage>
                 color: Colors.red,
               ),
             ),
-      pokemon != null
-          ? PokemonStatWidget(pokemon: pokemon)
+      poke != null
+          ? PokeStatWidget(poke: poke)
           : Center(
               child: Loading(
                 indicator: BallPulseIndicator(),
@@ -68,13 +67,13 @@ class PokemonItemPageState extends State<PokemonItemPage>
                 color: Colors.red,
               ),
             ),
-      PokemonBallWidget(),
+      PokeBallWidget(),
       _buildItemMove(),
     ];
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Constants
-              .POKEMON_COLOR_MAP[pokemon != null ? pokemon.types[0] : '一般'],
+          backgroundColor:
+              Constants.POKE_COLOR_MAP[poke != null ? poke.types[0] : '一般'],
           toolbarHeight: kToolbarHeight,
           bottom: TabBar(
             indicatorColor: Colors.white,
@@ -87,10 +86,10 @@ class PokemonItemPageState extends State<PokemonItemPage>
   }
 
   Widget _buildItemMove() {
-    return pokemon != null
+    return poke != null
         ? Column(children: [
             Image.network(
-              pokemon.lqImg,
+              poke.lqImg,
               width: 50.0,
               height: 50.0,
             ),

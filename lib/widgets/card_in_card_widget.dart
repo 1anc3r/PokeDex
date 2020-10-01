@@ -17,7 +17,7 @@ class CardInCardWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Card(
-        color: color, // Constants.POKEMON_COLOR_MAP[pokemon.types[0]]
+        color: color, // Constants.POKEMON_COLOR_MAP[poke.types[0]]
         child: Column(children: [
           Text(
             title,

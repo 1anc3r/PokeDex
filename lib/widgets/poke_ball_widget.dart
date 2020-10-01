@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokemon/utils/constants.dart';
 
-class PokemonBallWidget extends StatefulWidget {
-  PokemonBallWidget({Key key}) : super(key: key);
+class PokeBallWidget extends StatefulWidget {
+  PokeBallWidget({Key key}) : super(key: key);
 
   @override
-  PokemonBallState createState() {
-    return PokemonBallState();
+  PokeBallState createState() {
+    return PokeBallState();
   }
 }
 
-class PokemonBallState extends State<PokemonBallWidget> {
+class PokeBallState extends State<PokeBallWidget> {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(

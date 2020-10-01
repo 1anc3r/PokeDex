@@ -1,6 +1,8 @@
 import 'package:pokemon/utils/constants.dart';
 
-class PokemonModel {
+import 'move_model.dart';
+
+class PokeModel {
   String ndex;
   String url;
   String lqImg;
@@ -11,9 +13,11 @@ class PokemonModel {
   String jname; // フシギダネ
   String enname; // Bulbasaur
   String species; // 种子
+
   List<String> types = []; // 草 | 毒
   List<String> egggroups = []; // 怪兽 | 植物
   List<String> abilities = []; // 茂盛
+
   int gendercode; // 31
   int eggcycles; // 20
   int catchrate; // 45
@@ -24,25 +28,30 @@ class PokemonModel {
   Map<String, int> speciesStrengths = {};
   Map<String, int> basePoints = {};
 
-  PokemonModel(this.ndex, this.name, this.jname, this.enname) {
-    url = '${Constants.POKEMON_INDEX_URL}?title=${name}&action=edit';
-    lqImg = '${Constants.POKEMON_LQ_IMG_URL}/${processName(enname)}.png';
+  List<MoveModel> levellist = [];
+  List<MoveModel> tmlist = [];
+  List<MoveModel> breedlist = [];
+  List<MoveModel> tutorlist = [];
+
+  PokeModel(this.ndex, this.name, this.jname, this.enname) {
+    url = '${Constants.POKE_INDEX_URL}?title=${name}&action=edit';
+    lqImg = '${Constants.POKE_LQ_IMG_URL}/${processName(enname)}.png';
   }
 
-  PokemonModel.fromJson(Map<String, dynamic> json) {
+  PokeModel.fromJson(Map<String, dynamic> json) {
     if (json['ndex'] != null) {
       ndex = json['ndex']?.toString();
     }
     if (json['name'] != null) {
       name = json['name']?.toString();
-      url = '${Constants.POKEMON_INDEX_URL}?title=${name}&action=edit';
+      url = '${Constants.POKE_INDEX_URL}?title=${name}&action=edit';
     }
     if (json['jname'] != null) {
       jname = json['jname']?.toString();
     }
     if (json['enname'] != null) {
       enname = json['enname']?.toString();
-      lqImg = '${Constants.POKEMON_LQ_IMG_URL}/${processName(this.enname)}.png';
+      lqImg = '${Constants.POKE_LQ_IMG_URL}/${processName(this.enname)}.png';
     }
 
     if (json['species'] != null) {
