@@ -141,14 +141,11 @@ class PokeDao {
     ];
     MoveModel move;
     var words = line
-        .replaceAll('yes', '')
         .replaceAll('&mash;', '—')
         .replaceAll('&mdash;', '—')
-        .replaceAll(new RegExp(r'{{MSP\|[a-zA-Z0-9]+\|'), '-')
-        .replaceAll('||', '')
+        .replaceAll(new RegExp(r'{{MSP\|[a-zA-Z0-9]+\|'), '-') // to-do: 提取亲代
         .replaceAll('{', '')
         .replaceAll('}', '')
-        .replaceAll('\'', '')
         .split('|');
     if (bowl[0] || bowl[1] || bowl[2]) {
       move = MoveModel(

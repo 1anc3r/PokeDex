@@ -28,21 +28,20 @@ class PokeStatState extends State<PokeStatWidget>
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: Column(
-          children: [
-            _buildSpeciesStrengthHexaMap(),
-            Padding(
-                padding: const EdgeInsets.only(top: 96.0),
-                child: Column(
-                  children: [
-                    _buildBasePoints(),
-                    _buildSpeciesStrength(),
-                  ],
-                )),
-          ],
-        ),
+      padding: const EdgeInsets.all(6.0),
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: [
+          _buildSpeciesStrengthHexaMap(),
+          Padding(
+              padding: const EdgeInsets.only(top: 96.0),
+              child: Column(
+                children: [
+                  _buildBasePoints(),
+                  _buildSpeciesStrength(),
+                ],
+              )),
+        ],
       ),
     );
   }

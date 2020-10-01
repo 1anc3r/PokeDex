@@ -18,19 +18,17 @@ class PokeMoveWidget extends StatelessWidget {
   }
 
   Widget _buildMoveList() {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(6.0),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: <Widget>[
-            _buildTableListView('升级可学会招式表', poke.levellist),
-            _buildTableListView('招式学习器(无限次)', poke.tmlist),
-            _buildTableListView('招式记录(一次性)', poke.trlist),
-            _buildTableListView('蛋招式', poke.breedlist),
-            _buildTableListView('教授招式', poke.tutorlist),
-          ],
-        ),
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: <Widget>[
+          _buildTableListView('升级可学会招式表', poke.levellist),
+          _buildTableListView('招式学习器(无限次)', poke.tmlist),
+          _buildTableListView('招式记录(一次性)', poke.trlist),
+          _buildTableListView('蛋招式', poke.breedlist),
+          _buildTableListView('教授招式', poke.tutorlist),
+        ],
       ),
     );
   }

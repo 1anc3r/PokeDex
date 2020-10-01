@@ -26,57 +26,56 @@ class PokeInfoState extends State<PokeInfoWidget>
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: Column(children: [
-          Row(children: [
-            // 图片和名字
-            _buildItemHeadIcon(),
-            // 种族值
-            _buildItemSpeciesStrength(),
-          ]),
-          Row(children: [
-            // 属性
-            _buildItemTypes(),
-            Expanded(
-              //分类
-              child: _buildItemSpecies(),
-            ),
-          ]),
-          // 特性
-          _buildItemAbilities(),
-          // 蛋群
-          _buildItemEgggroups(),
-          // 100级时经验值
-          _buildItemLv100exp(),
-          Row(children: [
-            Expanded(
-              // 身高
-              child: _buildItemHeight(),
-              flex: 1,
-            ),
-            Expanded(
-              // 体重
-              child: _buildItemWeight(),
-              flex: 1,
-            ),
-          ]),
-          // 性别比例
-          _buildItemGenderCode(),
-          Row(children: [
-            Expanded(
-              // 捕获率
-              child: _buildItemCatchRate(),
-              flex: 1,
-            ),
-            Expanded(
-              //孵化周期
-              child: _buildItemEggcycles(),
-              flex: 1,
-            ),
-          ]),
+      padding: const EdgeInsets.all(6.0),
+      scrollDirection: Axis.vertical,
+      child: Column(children: [
+        Row(children: [
+          // 图片和名字
+          _buildItemHeadIcon(),
+          // 种族值
+          _buildItemSpeciesStrength(),
         ]),
-      ),
+        Row(children: [
+          // 属性
+          _buildItemTypes(),
+          Expanded(
+            //分类
+            child: _buildItemSpecies(),
+          ),
+        ]),
+        // 特性
+        _buildItemAbilities(),
+        // 蛋群
+        _buildItemEgggroups(),
+        // 100级时经验值
+        _buildItemLv100exp(),
+        Row(children: [
+          Expanded(
+            // 身高
+            child: _buildItemHeight(),
+            flex: 1,
+          ),
+          Expanded(
+            // 体重
+            child: _buildItemWeight(),
+            flex: 1,
+          ),
+        ]),
+        // 性别比例
+        _buildItemGenderCode(),
+        Row(children: [
+          Expanded(
+            // 捕获率
+            child: _buildItemCatchRate(),
+            flex: 1,
+          ),
+          Expanded(
+            //孵化周期
+            child: _buildItemEggcycles(),
+            flex: 1,
+          ),
+        ]),
+      ]),
     );
   }
 
