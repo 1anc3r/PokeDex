@@ -27,19 +27,23 @@ class PokeStatState extends State<PokeStatWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildSpeciesStrengthHexaMap(),
-        Padding(
-            padding: const EdgeInsets.only(
-                top: 96.0, left: 6.0, right: 6.0, bottom: 6.0),
-            child: Column(
-              children: [
-                _buildBasePoints(),
-                _buildSpeciesStrength(),
-              ],
-            )),
-      ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: Column(
+          children: [
+            _buildSpeciesStrengthHexaMap(),
+            Padding(
+                padding: const EdgeInsets.only(top: 96.0),
+                child: Column(
+                  children: [
+                    _buildBasePoints(),
+                    _buildSpeciesStrength(),
+                  ],
+                )),
+          ],
+        ),
+      ),
     );
   }
 
@@ -117,7 +121,6 @@ class PokeStatState extends State<PokeStatWidget>
       child: Card(
         child: Table(
           columnWidths: const {
-            //列宽
             0: FixedColumnWidth(180.0),
             1: FixedColumnWidth(70.0),
             2: FixedColumnWidth(70.0),
@@ -129,62 +132,40 @@ class PokeStatState extends State<PokeStatWidget>
           ),
           children: [
             TableRow(children: [
-              Container(
-                color: Constants.POKE_COLOR_MAP[poke.types[0]],
-                padding: const EdgeInsets.all(2.0),
-                alignment: Alignment.center,
-                child: Text(
-                  '种族值',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Container(
-                color: Constants.POKE_COLOR_MAP[poke.types[0]],
-                padding: const EdgeInsets.all(2.0),
-                alignment: Alignment.center,
-                child: Text(
-                  '50级时',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Container(
-                color: Constants.POKE_COLOR_MAP[poke.types[0]],
-                padding: const EdgeInsets.all(2.0),
-                alignment: Alignment.center,
-                child: Text(
-                  '100级时',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+              _buildTableTitleView('种族值'),
+              _buildTableTitleView('50级时'),
+              _buildTableTitleView('100级时'),
             ]),
-            TableRow(children: _buildTableRowView(Constants.HP)),
-            TableRow(children: _buildTableRowView(Constants.ATK)),
-            TableRow(children: _buildTableRowView(Constants.DEF)),
-            TableRow(children: _buildTableRowView(Constants.SAT)),
-            TableRow(children: _buildTableRowView(Constants.SDE)),
-            TableRow(children: _buildTableRowView(Constants.SPD)),
+            TableRow(children: _buildTableCellView(Constants.HP)),
+            TableRow(children: _buildTableCellView(Constants.ATK)),
+            TableRow(children: _buildTableCellView(Constants.DEF)),
+            TableRow(children: _buildTableCellView(Constants.SAT)),
+            TableRow(children: _buildTableCellView(Constants.SDE)),
+            TableRow(children: _buildTableCellView(Constants.SPD)),
           ],
         ),
       ),
     );
   }
 
-  List<Widget> _buildTableRowView(String text) {
+  Widget _buildTableTitleView(String text) {
+    return Container(
+      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      padding: const EdgeInsets.all(2.0),
+      alignment: Alignment.center,
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+          fontSize: 16,
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildTableCellView(String text) {
     return [
       LineProcessWidget(
           keyword: text,

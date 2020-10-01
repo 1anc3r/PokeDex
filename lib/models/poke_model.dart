@@ -28,10 +28,21 @@ class PokeModel {
   Map<String, int> speciesStrengths = {};
   Map<String, int> basePoints = {};
 
-  List<MoveModel> levellist = [];
-  List<MoveModel> tmlist = [];
-  List<MoveModel> breedlist = [];
-  List<MoveModel> tutorlist = [];
+  List<MoveModel> levellist = [
+    MoveModel(0, '等级', '招式', '属性', '分类', '威力', '命中', 'PP')
+  ];
+  List<MoveModel> tmlist = [
+    MoveModel(1, 'TM', '招式', '属性', '分类', '威力', '命中', 'PP')
+  ];
+  List<MoveModel> trlist = [
+    MoveModel(1, 'TR', '招式', '属性', '分类', '威力', '命中', 'PP')
+  ];
+  List<MoveModel> breedlist = [
+    MoveModel(2, '亲代', '招式', '属性', '分类', '威力', '命中', 'PP')
+  ];
+  List<MoveModel> tutorlist = [
+    MoveModel(3, ' ', '招式', '属性', '分类', '威力', '命中', 'PP')
+  ];
 
   PokeModel(this.ndex, this.name, this.jname, this.enname) {
     url = '${Constants.POKE_INDEX_URL}?title=${name}&action=edit';

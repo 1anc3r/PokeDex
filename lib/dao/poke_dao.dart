@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:pokemon/models/move_model.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/utils/constants.dart';
+import 'package:pokemon/utils/log_util.dart';
 
 class PokeDao {
   static RegExp normalRegExp = RegExp(r'^|(\w+|[\u4e00-\u9fa5]+)=(.+?)$');
@@ -74,6 +75,7 @@ class PokeDao {
     Map<String, dynamic> modelkv = {};
     List<MoveModel> levellist = [];
     List<MoveModel> tmlist = [];
+    List<MoveModel> trlist = [];
     List<MoveModel> breedlist = [];
     List<MoveModel> tutorlist = [];
     if (itemText.isNotEmpty) {
@@ -90,19 +92,23 @@ class PokeDao {
               tmlist.add(move);
               break;
             case 2:
-              breedlist.add(move);
+              trlist.add(move);
               break;
             case 3:
+              breedlist.add(move);
+              break;
+            case 4:
               tutorlist.add(move);
               break;
           }
         }
       });
       model = PokeModel.fromJson(modelkv);
-      model.levellist = levellist;
-      model.tmlist = tmlist;
-      model.breedlist = breedlist;
-      model.tutorlist = tutorlist;
+      model.levellist.addAll(levellist);
+      model.tmlist.addAll(tmlist);
+      model.trlist.addAll(trlist);
+      model.breedlist.addAll(breedlist);
+      model.tutorlist.addAll(tutorlist);
       return model;
     }
   }
@@ -135,20 +141,30 @@ class PokeDao {
     ];
     MoveModel move;
     var words = line
+        .replaceAll('yes', '')
         .replaceAll('&mash;', '—')
-        .replaceAll(new RegExp(r'{{MSP\|\d+\|'), ' ')
+        .replaceAll('&mdash;', '—')
+        .replaceAll(new RegExp(r'{{MSP\|[a-zA-Z0-9]+\|'), '-')
         .replaceAll('||', '')
         .replaceAll('{', '')
         .replaceAll('}', '')
+        .replaceAll('\'', '')
         .split('|');
-    // 升级
     if (bowl[0] || bowl[1] || bowl[2]) {
-      move = MoveModel(bowl[0] ? 0 : (bowl[1] ? 1 : 2), words[1], words[2],
-          words[3], words[4], words[5], words[6], words[7]);
+      move = MoveModel(
+          bowl[0] ? 0 : (bowl[1] ? (words[1].contains('招式学习器') ? 1 : 2) : 3),
+          words[1].replaceAll('招式学习器', '').replaceAll('招式记录', ''),
+          words[2],
+          words[3],
+          words[4],
+          words[5],
+          words[6],
+          words[7]);
     }
     if (bowl[3]) {
+      LogUtil.Log('parseMove', '${words}');
       move = MoveModel(
-          3, '', words[1], words[2], words[3], words[4], words[5], words[6]);
+          4, '', words[1], words[2], words[3], words[4], words[5], words[6]);
     }
     return move;
   }
