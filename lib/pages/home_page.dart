@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/pages/pokemon_item_page.dart';
-import 'package:pokemon/utils/constant.dart';
+import 'package:pokemon/utils/constants.dart';
+import 'package:pokemon/widgets/pokemon_ball_widget.dart';
 import 'package:pokemon/widgets/search_text_field_bar.dart';
 
 import 'item_page.dart';
@@ -9,16 +10,16 @@ import 'pokemon_list_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List _titles = ['宝可梦', '招式', '道具'];
   List _pages = [
     PokemonListPage(),
-    PokemonItemPage(),
-    PokemonItemPage(),
+    PokemonItemPage(pokemonName: '妙蛙种子'),
+    PokemonItemPage(pokemonName: '妙蛙种子'),
   ];
 
   @override
@@ -37,20 +38,31 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        // 底部导航
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.album), title: Text(_titles[0])),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.usb), title: Text(_titles[1])),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.laptop_mac), title: Text(_titles[2])),
-        ],
-        currentIndex: _selectedIndex,
-        fixedColor: Colors.red,
-        onTap: _onItemTapped,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        shape: CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
+        child: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.usb),
+              onPressed: () => {_onItemTapped(1)},
+            ),
+            SizedBox(), //中间位置空出
+            IconButton(
+              icon: Icon(Icons.laptop_mac),
+              onPressed: () => {_onItemTapped(2)},
+            ),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        //悬浮按钮
+        child: PokemonBallWidget(),
+        backgroundColor: Colors.white,
+        onPressed: () => {_onItemTapped(0)},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 

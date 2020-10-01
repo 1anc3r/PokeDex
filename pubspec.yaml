@@ -31,6 +31,7 @@ dependencies:
   dio: ^3.0.9
   http: ^0.12.0+4
   html: ^0.14.0+2
+  sprintf: ^4.0.0
   loading: ^1.0.2
 
 dev_dependencies:
@@ -78,3 +79,24 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+  assets:
+    - assets/icons/20px-LPLE_一般.png
+    - assets/icons/20px-LPLE_格斗.png
+    - assets/icons/20px-LPLE_飞行.png
+    - assets/icons/20px-LPLE_毒.png
+    - assets/icons/20px-LPLE_地面.png
+    - assets/icons/20px-LPLE_岩石.png
+    - assets/icons/20px-LPLE_虫.png
+    - assets/icons/20px-LPLE_幽灵.png
+    - assets/icons/20px-LPLE_钢.png
+    - assets/icons/20px-LPLE_火.png
+    - assets/icons/20px-LPLE_水.png
+    - assets/icons/20px-LPLE_草.png
+    - assets/icons/20px-LPLE_电.png
+    - assets/icons/20px-LPLE_超能力.png
+    - assets/icons/20px-LPLE_冰.png
+    - assets/icons/20px-LPLE_龙.png
+    - assets/icons/20px-LPLE_恶.png
+    - assets/icons/20px-LPLE_妖精.png

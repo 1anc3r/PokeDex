@@ -4,12 +4,12 @@ class ItemPage extends StatefulWidget {
   ItemPage({Key key}) : super(key: key);
 
   @override
-  _ItemPageState createState() {
-    return _ItemPageState();
+  ItemPageState createState() {
+    return ItemPageState();
   }
 }
 
-class _ItemPageState extends State<ItemPage> {
+class ItemPageState extends State<ItemPage> {
   @override
   void initState() {
     super.initState();

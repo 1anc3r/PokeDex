@@ -5,15 +5,15 @@ import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'package:pokemon/dao/i_pokemon_dao.dart';
 import 'package:pokemon/models/pokemon_model.dart';
+import 'package:pokemon/utils/constants.dart';
+import 'package:pokemon/utils/log_util.dart';
 
 class PokemonDao extends IPokemonDao {
-  static RegExp normalRegExp = RegExp(
-      r'^|(\w+|[\u4e00-\u9fa5]+)=([0-9]+|[a-zA-Z]+|[\u4e00-\u9fa5]+|[一-龠]+|[ぁ-ん]+|[ァ-ヴー]+|\w+|\s+)$');
+  static RegExp normalRegExp = RegExp(r'^|(\w+|[\u4e00-\u9fa5]+)=(.+?)$');
 
   static Future<String> fetchPokemonList() async {
     return http
-        .get(
-            'https://wiki.52poke.com/index.php?title=%E5%AE%9D%E5%8F%AF%E6%A2%A6%E5%88%97%E8%A1%A8%EF%BC%88%E6%8C%89%E5%85%A8%E5%9B%BD%E5%9B%BE%E9%89%B4%E7%BC%96%E5%8F%B7%EF%BC%89/%E7%AE%80%E5%8D%95%E7%89%88&action=edit')
+        .get('${Constants.POKEMON_INDEX_URL}${Constants.POKEMON_CN_LIST_URL}')
         .then((http.Response response) {
       Document document = parse(response.body.toString());
       String listText = document
@@ -26,7 +26,7 @@ class PokemonDao extends IPokemonDao {
 
   static Future<String> fetchPokemonItem(String name) async {
     return http
-        .get('https://wiki.52poke.com/index.php?title=${name}&action=edit')
+        .get('${Constants.POKEMON_INDEX_URL}?title=${name}&action=edit')
         .then((http.Response response) {
       Document document = parse(response.body.toString());
       String itemText = document
@@ -34,6 +34,23 @@ class PokemonDao extends IPokemonDao {
           .text
           .toString();
       return itemText;
+    });
+  }
+
+  static Future<String> fetchPokemonHQImg(String ndex, String enname) async {
+    return http
+        .get('${Constants.POKEMON_HQ_IMG_URL}${ndex}${enname}.png')
+        .then((http.Response response) {
+      Document document = parse(response.body.toString());
+      String imgUrl = document
+          .getElementsByClassName('fullImageLink')[0]
+          .getElementsByTagName('img')[0]
+          .attributes['src']
+          .toString();
+      imgUrl = imgUrl
+          .replaceAll('//media.52poke.com/', 'http://s1.52poke.wiki/')
+          .replaceAll('600px', '300px');
+      return imgUrl;
     });
   }
 
@@ -74,9 +91,8 @@ class PokemonDao extends IPokemonDao {
           }
         }
       });
-
       model = PokemonModel.fromJson(modelkv);
+      return model;
     }
-    return model;
   }
 }

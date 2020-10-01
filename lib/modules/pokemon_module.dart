@@ -4,7 +4,6 @@ import 'package:pokemon/models/pokemon_model.dart';
 import 'i_pokemon_module.dart';
 
 class PokemonModule extends IPokemonModule {
-  PokemonModel pokemon;
   List<PokemonModel> pokemons = [];
 
   factory PokemonModule() => _getInstance();
@@ -21,11 +20,11 @@ class PokemonModule extends IPokemonModule {
   }
 
   static List<PokemonModel> bindList(List<PokemonModel> newpokemons) {
-    instance.pokemons = newpokemons;
+    return instance.pokemons = newpokemons;
   }
 
   static PokemonModel bindItem(PokemonModel newpokemon) {
-    instance.pokemon = newpokemon;
+    return newpokemon;
   }
 
   static Future<List<PokemonModel>> fetchList() async {
@@ -38,5 +37,10 @@ class PokemonModule extends IPokemonModule {
     return PokemonDao.fetchPokemonItem(name)
         .then((itemText) => PokemonDao.parsePokemonItem(itemText))
         .then((itemData) => bindItem(itemData));
+  }
+
+  static Future fetchItemHQImg(PokemonModel model) async {
+    return PokemonDao.fetchPokemonHQImg(model.ndex, model.enname)
+        .then((hqImg) => {model.hqImg = hqImg});
   }
 }

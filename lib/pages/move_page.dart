@@ -4,12 +4,12 @@ class MovePage extends StatefulWidget {
   MovePage({Key key}) : super(key: key);
 
   @override
-  _MovePageState createState() {
-    return _MovePageState();
+  MovePageState createState() {
+    return MovePageState();
   }
 }
 
-class _MovePageState extends State<MovePage> {
+class MovePageState extends State<MovePage> {
   @override
   void initState() {
     super.initState();
