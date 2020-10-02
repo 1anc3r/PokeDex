@@ -32,6 +32,12 @@ class PokemonBallPainter extends CustomPainter {
         Offset(size.width / 2, size.width / 2), size.width / 2, _paint);
 
     _paint.color = Colors.red;
+
+    Rect rect = Rect.fromCircle(
+        center: Offset(size.width / 2, size.width / 2), radius: size.width / 2);
+    canvas.drawArc(rect, Constants.PI * 5 / 6, Constants.PI * 1, true, _paint);
+
+    _paint.color = Colors.black;
     _paint.style = PaintingStyle.stroke;
     _paint.strokeWidth = size.width / 18;
 
@@ -51,7 +57,7 @@ class PokemonBallPainter extends CustomPainter {
     canvas.drawCircle(
         Offset(size.width / 2, size.width / 2), size.width / 6, _paint);
 
-    _paint.color = Colors.red;
+    _paint.color = Colors.black;
     _paint.style = PaintingStyle.stroke;
 
     canvas.drawCircle(

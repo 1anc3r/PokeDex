@@ -79,7 +79,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemHeadIcon() {
+  _buildItemHeadIcon() {
     return Expanded(
       flex: 1,
       child: Column(children: [
@@ -110,7 +110,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemSpeciesStrength() {
+  _buildItemSpeciesStrength() {
     return Expanded(
       child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
         LineProcessWidget(
@@ -157,7 +157,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemTypes() {
+  _buildItemTypes() {
     return CardInCardWidget(
       text: '属性',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -174,7 +174,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemSpecies() {
+  _buildItemSpecies() {
     return CardInCardWidget(
         text: '分类',
         color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -185,7 +185,7 @@ class PokeInfoState extends State<PokeInfoWidget>
         ));
   }
 
-  Widget _buildItemAbilities() {
+  _buildItemAbilities() {
     return CardInCardWidget(
       text: '特性',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -207,7 +207,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemEgggroups() {
+  _buildItemEgggroups() {
     return CardInCardWidget(
       text: '蛋群',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -229,7 +229,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemLv100exp() {
+  _buildItemLv100exp() {
     return CardInCardWidget(
       text: '100级时经验值',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -241,7 +241,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemHeight() {
+  _buildItemHeight() {
     return CardInCardWidget(
       text: '身高',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -253,7 +253,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemWeight() {
+  _buildItemWeight() {
     return CardInCardWidget(
       text: '体重',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -265,7 +265,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemGenderCode() {
+  _buildItemGenderCode() {
     return CardInCardWidget(
       text: '性别比例',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -292,7 +292,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemCatchRate() {
+  _buildItemCatchRate() {
     return CardInCardWidget(
       text: '捕获率',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -304,7 +304,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildItemEggcycles() {
+  _buildItemEggcycles() {
     return CardInCardWidget(
       text: '孵化周期',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -316,7 +316,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     );
   }
 
-  Widget _buildTypeCard(String type) {
+  _buildTypeCard(String type) {
     return Card(
       color: Colors.grey,
       child: Row(

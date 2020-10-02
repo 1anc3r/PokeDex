@@ -2,7 +2,7 @@ import 'package:pokemon/dao/poke_dao.dart';
 import 'package:pokemon/models/poke_model.dart';
 
 class PokeModule {
-  List<PokeModel> pokes = [];
+  Map<String, List<PokeModel>> pokes = {};
 
   factory PokeModule() => _getInstance();
   static PokeModule get instance => _getInstance();
@@ -17,7 +17,8 @@ class PokeModule {
     return _instance;
   }
 
-  static List<PokeModel> bindList(List<PokeModel> newpokes) {
+  static Map<String, List<PokeModel>> bindList(
+      Map<String, List<PokeModel>> newpokes) {
     return instance.pokes = newpokes;
   }
 
@@ -25,7 +26,7 @@ class PokeModule {
     return newpoke;
   }
 
-  static Future<List<PokeModel>> fetchList() async {
+  static Future<Map<String, List<PokeModel>>> fetchList() async {
     return PokeDao.fetchPokeList()
         .then((listText) => PokeDao.parsePokeList(listText))
         .then((listData) => bindList(listData));

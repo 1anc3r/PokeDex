@@ -13,7 +13,7 @@ class CardInCardWidget extends StatelessWidget {
     return _buildItemKeyValueCard(text, color, child);
   }
 
-  Widget _buildItemKeyValueCard(String title, Color color, Widget child) {
+  _buildItemKeyValueCard(String title, Color color, Widget child) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Card(

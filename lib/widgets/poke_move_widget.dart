@@ -4,6 +4,7 @@ import 'package:pokemon/models/move_model.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/utils/calc_util.dart';
 import 'package:pokemon/utils/constants.dart';
+import 'package:sprintf/sprintf.dart';
 
 import 'card_in_card_widget.dart';
 
@@ -24,8 +25,8 @@ class PokeMoveWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           _buildTableListView('升级可学会招式表', poke.levellist),
-          _buildTableListView('招式学习器(无限次)', poke.tmlist),
-          _buildTableListView('招式记录(一次性)', poke.trlist),
+          _buildTableListView('(可反复使用的)招式学习器', poke.tmlist),
+          _buildTableListView('(一次性使用的)招式记录', poke.trlist),
           _buildTableListView('蛋招式', poke.breedlist),
           _buildTableListView('教授招式', poke.tutorlist),
         ],
@@ -42,7 +43,7 @@ class PokeMoveWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Table(
             columnWidths: const {
-              0: FixedColumnWidth(40.0),
+              0: FixedColumnWidth(39.0),
               1: FixedColumnWidth(75.0),
               2: FixedColumnWidth(48.0),
               3: FixedColumnWidth(40.0),
@@ -80,9 +81,10 @@ class PokeMoveWidget extends StatelessWidget {
           '${move.sourceText.contains('-') ? '亲代' : move.sourceText}',
           cellColor,
           textColor),
-      _buildTableCellView('${move.name}', cellColor, textColor),
-      _buildTableCellView('${move.type}', cellColor, textColor),
-      _buildTableCellView('${move.damagecategory}', cellColor, textColor),
+      _buildTableCellView(sprintf('%5s', [move.name]), cellColor, textColor),
+      _buildTableCellView(sprintf('%3s', [move.type]), cellColor, textColor),
+      _buildTableCellView(
+          sprintf('%3s', [move.damagecategory]), cellColor, textColor),
       _buildTableCellView('${move.power}', cellColor, textColor),
       _buildTableCellView('${move.accuracy}', cellColor, textColor),
       _buildTableCellView('${move.basepp}', cellColor, textColor),

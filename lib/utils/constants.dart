@@ -2,6 +2,7 @@ import 'dart:ui';
 
 class Constants {
   static const double RADICAL_THREE = 1.7320508;
+  static const double PI = 3.1415926;
 
   static const String POKE_TYPE_ICON_PRE_URL = 'assets/icons/20px-LPLE_';
   static const String POKE_LQ_IMG_URL =

@@ -15,8 +15,7 @@ class LineProcessWidget extends StatelessWidget {
     return _buildItemKeyValueCard(keyword, valueword, process, color);
   }
 
-  Widget _buildItemKeyValueCard(
-      String key, int value, double process, Color color) {
+  _buildItemKeyValueCard(String key, int value, double process, Color color) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Row(children: [

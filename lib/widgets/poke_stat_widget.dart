@@ -46,7 +46,7 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  Widget _buildSpeciesStrengthHexaMap() {
+  _buildSpeciesStrengthHexaMap() {
     return Padding(
       padding:
           const EdgeInsets.only(top: 36, bottom: 96.0, left: 96.0, right: 96.0),
@@ -92,7 +92,7 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  Widget _buildBasePoints() {
+  _buildBasePoints() {
     return CardInCardWidget(
       text: '取得基础点数',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -113,7 +113,7 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  Widget _buildSpeciesStrength() {
+  _buildSpeciesStrength() {
     return CardInCardWidget(
       text: '能力值',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -147,7 +147,7 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  Widget _buildTableTitleView(String text) {
+  _buildTableTitleView(String text) {
     return Container(
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
       padding: const EdgeInsets.all(2.0),
@@ -164,7 +164,7 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  List<Widget> _buildTableCellView(String text) {
+  _buildTableCellView(String text) {
     return [
       LineProcessWidget(
           keyword: text,
@@ -186,7 +186,7 @@ class PokeStatState extends State<PokeStatWidget>
     ];
   }
 
-  Widget _buildTextCard(String text, Color color) {
+  _buildTextCard(String text, Color color) {
     return Card(
       color: color,
       child: Padding(

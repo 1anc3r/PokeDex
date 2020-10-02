@@ -20,5 +20,19 @@ class MoveModel {
   bool kingsrock; // yes 不受王者之证等类似道具影响
 
   MoveModel(this.sourceType, this.sourceText, this.name, this.type,
-      this.damagecategory, this.power, this.accuracy, this.basepp);
+      this.damagecategory, this.power, this.accuracy, this.basepp) {
+    sourceText = sourceText
+        .replaceAll('招式学习器', '')
+        .replaceAll('招式记录', '')
+        .replaceAll('０', '0')
+        .replaceAll('１', '1')
+        .replaceAll('２', '2')
+        .replaceAll('３', '3')
+        .replaceAll('４', '4')
+        .replaceAll('５', '5')
+        .replaceAll('６', '6')
+        .replaceAll('７', '7')
+        .replaceAll('８', '8')
+        .replaceAll('９', '9');
+  }
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loading/indicator/ball_pulse_indicator.dart';
-import 'package:loading/loading.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/modules/poke_module.dart';
 import 'package:pokemon/pages/poke_item_page.dart';
+import 'package:pokemon/widgets/poke_ball_widget.dart';
 
 class PokeListPage extends StatefulWidget {
   PokeListPage({Key key}) : super(key: key);
@@ -30,24 +29,46 @@ class PokeListPageState extends State<PokeListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: PokeModule.instance.pokes.length > 0
-          ? new ListView.builder(
-              itemCount: PokeModule.instance.pokes.length,
-              itemBuilder: (context, index) {
-                return _buildListItemCard(
-                    context, PokeModule.instance.pokes[index]);
-              })
-          : Center(
-              child: Loading(
-                indicator: BallPulseIndicator(),
-                size: 72.0,
-                color: Colors.red,
-              ),
-            ),
+      body: _buildExpandList(context),
     );
   }
 
-  _buildListItemCard(BuildContext context, PokeModel model) {
+  _buildExpandList(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: PokeModule.instance.pokes.keys
+            .map((key) => ExpansionTile(
+                  title: Text(
+                    key,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 18,
+                    ),
+                  ),
+                  leading: Container(
+                    width: 36,
+                    height: 36,
+                    child: PokeBallWidget(),
+                  ),
+                  trailing: Container(
+                    width: 36,
+                    height: 36,
+                    child: PokeBallWidget(),
+                  ),
+                  children: PokeModule.instance.pokes[key]
+                      .sublist(0, 20)
+                      .map(
+                          (itemModel) => _buildListItemCard(context, itemModel))
+                      .toList(),
+                ))
+            .toList(),
+      ),
+    );
+  }
+
+  Widget _buildListItemCard(BuildContext context, PokeModel model) {
     return new GestureDetector(
       onTap: () => _navigateToItem(context, model.name),
       child: new Card(
