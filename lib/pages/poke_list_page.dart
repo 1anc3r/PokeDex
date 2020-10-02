@@ -29,11 +29,11 @@ class PokeListPageState extends State<PokeListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _buildExpandList(context),
+      body: _buildExpandListView(context),
     );
   }
 
-  _buildExpandList(BuildContext context) {
+  Widget _buildExpandListView(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -59,8 +59,8 @@ class PokeListPageState extends State<PokeListPage> {
                   ),
                   children: PokeModule.instance.pokes[key]
                       .sublist(0, 20)
-                      .map(
-                          (itemModel) => _buildListItemCard(context, itemModel))
+                      .map((itemModel) =>
+                          _buildListItemCardView(context, itemModel))
                       .toList(),
                 ))
             .toList(),
@@ -68,7 +68,7 @@ class PokeListPageState extends State<PokeListPage> {
     );
   }
 
-  Widget _buildListItemCard(BuildContext context, PokeModel model) {
+  Widget _buildListItemCardView(BuildContext context, PokeModel model) {
     return new GestureDetector(
       onTap: () => _navigateToItem(context, model.name),
       child: new Card(

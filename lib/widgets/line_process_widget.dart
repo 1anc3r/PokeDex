@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:sprintf/sprintf.dart';
 
 class LineProcessWidget extends StatelessWidget {
-  LineProcessWidget({this.keyword, this.valueword, this.process, this.color});
+  LineProcessWidget({this.name, this.value, this.process, this.color});
 
-  final String keyword;
-  final int valueword;
+  final String name;
+  final int value;
   final double process;
   final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return _buildItemKeyValueCard(keyword, valueword, process, color);
+    return _buildItemKeyValueCardView(name, value, process, color);
   }
 
-  _buildItemKeyValueCard(String key, int value, double process, Color color) {
+  Widget _buildItemKeyValueCardView(
+      String key, int value, double process, Color color) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Row(children: [

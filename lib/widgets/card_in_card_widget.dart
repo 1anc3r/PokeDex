@@ -10,10 +10,10 @@ class CardInCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildItemKeyValueCard(text, color, child);
+    return _buildItemKeyValueCardView(text, color, child);
   }
 
-  _buildItemKeyValueCard(String title, Color color, Widget child) {
+  Widget _buildItemKeyValueCardView(String title, Color color, Widget child) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Card(

@@ -32,13 +32,13 @@ class PokeStatState extends State<PokeStatWidget>
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
-          _buildSpeciesStrengthHexaMap(),
+          _buildSpeciesStrengthHexaView(),
           Padding(
               padding: const EdgeInsets.only(top: 96.0),
               child: Column(
                 children: [
-                  _buildBasePoints(),
-                  _buildSpeciesStrength(),
+                  _buildBasePointsView(),
+                  _buildSpeciesStrengthView(),
                 ],
               )),
         ],
@@ -46,7 +46,7 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  _buildSpeciesStrengthHexaMap() {
+  Widget _buildSpeciesStrengthHexaView() {
     return Padding(
       padding:
           const EdgeInsets.only(top: 36, bottom: 96.0, left: 96.0, right: 96.0),
@@ -92,28 +92,33 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  _buildBasePoints() {
+  Widget _buildBasePointsView() {
     return CardInCardWidget(
       text: '取得基础点数',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
       child: Row(children: [
-        _buildTextCard('${Constants.HP}\n${poke.basePoints[Constants.HP]}',
+        _buildTextCardView('${Constants.HP}\n${poke.basePoints[Constants.HP]}',
             Constants.POKE_COLOR_MAP[Constants.HP]),
-        _buildTextCard('${Constants.ATK}\n${poke.basePoints[Constants.ATK]}',
+        _buildTextCardView(
+            '${Constants.ATK}\n${poke.basePoints[Constants.ATK]}',
             Constants.POKE_COLOR_MAP[Constants.ATK]),
-        _buildTextCard('${Constants.DEF}\n${poke.basePoints[Constants.DEF]}',
+        _buildTextCardView(
+            '${Constants.DEF}\n${poke.basePoints[Constants.DEF]}',
             Constants.POKE_COLOR_MAP[Constants.DEF]),
-        _buildTextCard('${Constants.SAT}\n${poke.basePoints[Constants.SAT]}',
+        _buildTextCardView(
+            '${Constants.SAT}\n${poke.basePoints[Constants.SAT]}',
             Constants.POKE_COLOR_MAP[Constants.SAT]),
-        _buildTextCard('${Constants.SDE}\n${poke.basePoints[Constants.SDE]}',
+        _buildTextCardView(
+            '${Constants.SDE}\n${poke.basePoints[Constants.SDE]}',
             Constants.POKE_COLOR_MAP[Constants.SDE]),
-        _buildTextCard('${Constants.SPD}\n${poke.basePoints[Constants.SPD]}',
+        _buildTextCardView(
+            '${Constants.SPD}\n${poke.basePoints[Constants.SPD]}',
             Constants.POKE_COLOR_MAP[Constants.SPD]),
       ]),
     );
   }
 
-  _buildSpeciesStrength() {
+  Widget _buildSpeciesStrengthView() {
     return CardInCardWidget(
       text: '能力值',
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
@@ -147,7 +152,7 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  _buildTableTitleView(String text) {
+  Widget _buildTableTitleView(String text) {
     return Container(
       color: Constants.POKE_COLOR_MAP[poke.types[0]],
       padding: const EdgeInsets.all(2.0),
@@ -164,11 +169,11 @@ class PokeStatState extends State<PokeStatWidget>
     );
   }
 
-  _buildTableCellView(String text) {
+  List<Widget> _buildTableCellView(String text) {
     return [
       LineProcessWidget(
-          keyword: text,
-          valueword: poke.speciesStrengths[text],
+          name: text,
+          value: poke.speciesStrengths[text],
           process: poke.speciesStrengths[text] / 255,
           color: Constants.POKE_COLOR_MAP[text]),
       Container(
@@ -186,7 +191,7 @@ class PokeStatState extends State<PokeStatWidget>
     ];
   }
 
-  _buildTextCard(String text, Color color) {
+  Widget _buildTextCardView(String text, Color color) {
     return Card(
       color: color,
       child: Padding(

@@ -83,7 +83,7 @@ class PokeItemPageState extends State<PokeItemPage>
                 color: Colors.red,
               ),
             ),
-      _buildItemMove(),
+      _buildItemMoveView(),
     ];
     return Scaffold(
         appBar: AppBar(
@@ -100,7 +100,7 @@ class PokeItemPageState extends State<PokeItemPage>
         body: TabBarView(controller: _tabController, children: tabBarViews));
   }
 
-  _buildItemMove() {
+  _buildItemMoveView() {
     return poke != null
         ? Column(children: [
             Image.network(
