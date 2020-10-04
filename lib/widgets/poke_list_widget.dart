@@ -6,16 +6,18 @@ import 'package:pokemon/modules/poke_module.dart';
 import 'package:pokemon/pages/poke_item_page.dart';
 import 'package:pokemon/utils/constants.dart';
 
-class PokeListPage extends StatefulWidget {
-  PokeListPage({Key key}) : super(key: key);
+import 'package:pokemon/widgets/over_scroll_behavior.dart';
+
+class PokeListWidget extends StatefulWidget {
+  PokeListWidget({Key key}) : super(key: key);
 
   @override
-  PokeListPageState createState() {
-    return PokeListPageState();
+  PokeListWidgetState createState() {
+    return PokeListWidgetState();
   }
 }
 
-class PokeListPageState extends State<PokeListPage> {
+class PokeListWidgetState extends State<PokeListWidget> {
   int tab;
   bool loadCompleted = false;
 
@@ -35,21 +37,18 @@ class PokeListPageState extends State<PokeListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: loadCompleted
-          ? _buildExpandListView(context)
-          : Center(
-              child: Loading(
-                indicator: BallPulseIndicator(),
-                size: 72.0,
-                color: Colors.red,
-              ),
+    return loadCompleted
+        ? _buildListView(context)
+        : Center(
+            child: Loading(
+              indicator: BallPulseIndicator(),
+              size: 72.0,
+              color: Colors.red,
             ),
-    );
+          );
   }
 
-  Widget _buildExpandListView(BuildContext context) {
+  Widget _buildListView(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -152,6 +151,7 @@ class PokeListPageState extends State<PokeListPage> {
                         children: [
                           Row(
                             children: [
+                              _buildItemNumberCardView('${model.ndex}'),
                               Text(
                                 model.name,
                                 textAlign: TextAlign.left,
@@ -160,7 +160,6 @@ class PokeListPageState extends State<PokeListPage> {
                                   fontSize: 16,
                                 ),
                               ),
-                              _buildItemNumberCardView('${model.ndex}'),
                             ],
                           ),
                           Text(
@@ -189,8 +188,8 @@ class PokeListPageState extends State<PokeListPage> {
         child: Text(
           'No.$number',
           style: TextStyle(
-            color: Colors.white,
             fontWeight: FontWeight.normal,
+            color: Colors.white,
           ),
         ),
       ),
@@ -201,26 +200,5 @@ class PokeListPageState extends State<PokeListPage> {
     Navigator.of(context).push(MaterialPageRoute(builder: (content) {
       return PokeItemPage(pokeName: name);
     }));
-  }
-}
-
-class OverScrollBehavior extends ScrollBehavior {
-  @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
-    switch (getPlatform(context)) {
-      case TargetPlatform.iOS:
-        return child;
-      case TargetPlatform.android:
-      case TargetPlatform.fuchsia:
-        return GlowingOverscrollIndicator(
-          child: child,
-          showLeading: false,
-          showTrailing: false,
-          axisDirection: axisDirection,
-          color: Theme.of(context).accentColor,
-        );
-    }
-    return null;
   }
 }

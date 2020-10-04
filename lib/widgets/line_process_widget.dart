@@ -19,11 +19,11 @@ class LineProcessWidget extends StatelessWidget {
       String key, int value, double process, Color color) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
-      child: Row(children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(sprintf('%s  %03d  ', [key, value])),
         Container(
-          height: 12,
           width: 100,
+          height: 12,
           child: LinearProgressIndicator(
             backgroundColor: Colors.grey[200],
             valueColor: AlwaysStoppedAnimation(color),

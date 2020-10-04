@@ -18,7 +18,7 @@ class CardInCardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(2.0),
       child: Card(
         color: color, // Constants.POKEMON_COLOR_MAP[poke.types[0]]
-        child: Column(children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
             title,
             textAlign: TextAlign.center,

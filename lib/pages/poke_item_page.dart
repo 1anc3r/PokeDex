@@ -22,13 +22,7 @@ class PokeItemPage extends StatefulWidget {
 class PokeItemPageState extends State<PokeItemPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  List tabBarTexts = [
-    "基础",
-    "能力",
-    "招式",
-    "分布"
-        ""
-  ];
+  List tabBarTexts = ["基础", "能力", "招式", "分布"];
   List tabBarViews = <Widget>[];
 
   final String pokeName;

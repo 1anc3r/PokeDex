@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon/pages/blank_page.dart';
 import 'package:pokemon/widgets/poke_ball_widget.dart';
+import 'package:pokemon/widgets/poke_list_widget.dart';
 import 'package:pokemon/widgets/search_text_field_bar.dart';
 
-import 'move_page.dart';
-import 'poke_list_page.dart';
+import 'main_menu_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,11 +13,13 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  List _titles = ['宝可梦', '招式', '道具'];
+  List _titles = ['图鉴', '招式', '道具'];
   List _pages = [
-    PokeListPage(),
-    MovePage(),
-    MovePage(),
+    MainMenuPage(
+      child: PokeListWidget(),
+    ),
+    BlankPage(),
+    BlankPage(),
   ];
 
   @override

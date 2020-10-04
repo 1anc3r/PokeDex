@@ -26,8 +26,8 @@ class PokeInfoState extends State<PokeInfoWidget>
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(6.0),
       scrollDirection: Axis.vertical,
+      padding: const EdgeInsets.all(6.0),
       child: Column(children: [
         Row(children: [
           // 图片和名字
@@ -51,28 +51,28 @@ class PokeInfoState extends State<PokeInfoWidget>
         _buildItemLv100expView(),
         Row(children: [
           Expanded(
+            flex: 1,
             // 身高
             child: _buildItemHeightView(),
-            flex: 1,
           ),
           Expanded(
+            flex: 1,
             // 体重
             child: _buildItemWeightView(),
-            flex: 1,
           ),
         ]),
         // 性别比例
         _buildItemGenderView(),
         Row(children: [
           Expanded(
+            flex: 1,
             // 捕获率
             child: _buildItemCatchRateView(),
-            flex: 1,
           ),
           Expanded(
+            flex: 1,
             //孵化周期
             child: _buildItemEggcyclesView(),
-            flex: 1,
           ),
         ]),
       ]),
@@ -260,7 +260,7 @@ class PokeInfoState extends State<PokeInfoWidget>
       child: Card(
         color: Colors.white,
         elevation: 0,
-        child: Text('${poke.weight}m'),
+        child: Text('${poke.weight}kg'),
       ),
     );
   }
@@ -320,6 +320,7 @@ class PokeInfoState extends State<PokeInfoWidget>
     return Card(
       color: Colors.grey,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipPath(
             child: Container(
