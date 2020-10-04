@@ -65,6 +65,10 @@ class PokeListPageState extends State<PokeListPage> {
                 }),
           ),
         ),
+        VerticalDivider(
+          width: 1,
+          color: Colors.grey[240],
+        ),
         Expanded(
           flex: 7,
           child: ScrollConfiguration(
