@@ -49,6 +49,17 @@ class Constants {
     SPD: Color(0xFFA456D0),
   };
 
+  static const Map<String, String> POKE_PIKACHU_MAP = {
+    '第一世代 关都地区': 'assets/pikachu/260px-025Pikachu-Original.webp',
+    '第二世代 城都地区': 'assets/pikachu/260px-025Pikachu-Partner.webp',
+    '第三世代 丰缘地区': 'assets/pikachu/260px-025Pikachu-Hoenn.webp',
+    '第四世代 神奥地区': 'assets/pikachu/260px-025Pikachu-Sinnoh.webp',
+    '第五世代 合众地区': 'assets/pikachu/260px-025Pikachu-Unova.webp',
+    '第六世代 卡洛斯地区': 'assets/pikachu/260px-025Pikachu-Kalos.webp',
+    '第七世代 阿罗拉地区': 'assets/pikachu/260px-025Pikachu-Alola.webp',
+    '第八世代 伽勒尔地区': 'assets/pikachu/260px-025Pikachu-World.webp',
+  };
+
   static const Map<int, double> POKE_GENDER_CODE_MAP = {
     256: -2.0,
     255: -1.0,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
+import 'package:loading/loading.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/modules/poke_module.dart';
 import 'package:pokemon/pages/poke_item_page.dart';
-import 'package:pokemon/widgets/poke_ball_widget.dart';
+import 'package:pokemon/utils/constants.dart';
 
 class PokeListPage extends StatefulWidget {
   PokeListPage({Key key}) : super(key: key);
@@ -14,10 +16,16 @@ class PokeListPage extends StatefulWidget {
 }
 
 class PokeListPageState extends State<PokeListPage> {
+  int tab;
+  bool loadCompleted = false;
+
   @override
   void initState() {
     super.initState();
-    PokeModule.fetchList().whenComplete(() => setState(() {}));
+    PokeModule.fetchList().whenComplete(() => setState(() {
+          tab = 0;
+          loadCompleted = true;
+        }));
   }
 
   @override
@@ -29,49 +37,97 @@ class PokeListPageState extends State<PokeListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _buildExpandListView(context),
+      body: loadCompleted
+          ? _buildExpandListView(context)
+          : Center(
+              child: Loading(
+                indicator: BallPulseIndicator(),
+                size: 72.0,
+                color: Colors.red,
+              ),
+            ),
     );
   }
 
   Widget _buildExpandListView(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        children: PokeModule.instance.pokes.keys
-            .map((key) => ExpansionTile(
-                  title: Text(
-                    key,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 18,
-                    ),
-                  ),
-                  leading: Container(
-                    width: 36,
-                    height: 36,
-                    child: PokeBallWidget(),
-                  ),
-                  trailing: Container(
-                    width: 36,
-                    height: 36,
-                    child: PokeBallWidget(),
-                  ),
-                  children: PokeModule.instance.pokes[key]
-                      .sublist(0, 20)
-                      .map((itemModel) =>
-                          _buildListItemCardView(context, itemModel))
-                      .toList(),
-                ))
-            .toList(),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          flex: 2,
+          child: ScrollConfiguration(
+            behavior: OverScrollBehavior(),
+            child: ListView.builder(
+                itemCount: PokeModule.instance.pokes.keys.length,
+                itemBuilder: (context, index) {
+                  return _buildListTitleCardView(
+                      context, PokeModule.instance.pokes.keys.elementAt(index));
+                }),
+          ),
+        ),
+        Expanded(
+          flex: 7,
+          child: ScrollConfiguration(
+            behavior: OverScrollBehavior(),
+            child: ListView.builder(
+              itemCount: PokeModule.instance
+                  .pokes[PokeModule.instance.pokes.keys.elementAt(tab)].length,
+              itemBuilder: (context, index) {
+                return _buildListItemCardView(
+                    context,
+                    PokeModule.instance.pokes[
+                        PokeModule.instance.pokes.keys.elementAt(tab)][index]);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildListTitleCardView(BuildContext context, String key) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (PokeModule.instance.pokes.keys.length > 0) {
+            tab = PokeModule.instance.pokes.keys.toList().indexOf(key);
+          }
+        });
+      },
+      child: Container(
+        color: tab == PokeModule.instance.pokes.keys.toList().indexOf(key)
+            ? Colors.red
+            : Colors.white,
+        child: new Padding(
+          padding: const EdgeInsets.only(top: 5.2, bottom: 5.2),
+          child: Column(children: [
+            Container(
+              width: 36,
+              height: 36,
+              child: Image.asset(Constants.POKE_PIKACHU_MAP[key]),
+            ),
+            Text(
+              key.replaceAll(' ', '\n'),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 12,
+                color:
+                    tab == PokeModule.instance.pokes.keys.toList().indexOf(key)
+                        ? Colors.white
+                        : Colors.black,
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }
 
   Widget _buildListItemCardView(BuildContext context, PokeModel model) {
-    return new GestureDetector(
+    return GestureDetector(
       onTap: () => _navigateToItem(context, model.name),
-      child: new Card(
+      child: Card(
         margin:
             const EdgeInsets.only(top: 4.0, bottom: 4.0, left: 8.0, right: 8.0),
         child: new Padding(
@@ -90,13 +146,18 @@ class PokeListPageState extends State<PokeListPage> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            model.name,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                model.name,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              _buildItemNumberCardView('${model.ndex}'),
+                            ],
                           ),
                           Text(
                             '${model.jname} ${model.enname}',
@@ -109,23 +170,24 @@ class PokeListPageState extends State<PokeListPage> {
                         ]),
                   ),
                 ),
-                DropdownButton(
-                  hint: Text(
-                    '#${model.ndex}',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 12,
-                    ),
-                  ),
-                  icon: Icon(
-                    Icons.navigate_next,
-                    size: 22.0,
-                    color: Color(0xffacacac),
-                  ),
-                  underline: Container(color: Colors.white),
-                ),
               ]),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildItemNumberCardView(String number) {
+    return Card(
+      color: Colors.black87,
+      child: new Padding(
+        padding:
+            new EdgeInsets.only(top: 2.0, bottom: 2.0, left: 4.0, right: 4.0),
+        child: Text(
+          'No.$number',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.normal,
+          ),
         ),
       ),
     );
@@ -135,5 +197,26 @@ class PokeListPageState extends State<PokeListPage> {
     Navigator.of(context).push(MaterialPageRoute(builder: (content) {
       return PokeItemPage(pokeName: name);
     }));
+  }
+}
+
+class OverScrollBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    switch (getPlatform(context)) {
+      case TargetPlatform.iOS:
+        return child;
+      case TargetPlatform.android:
+      case TargetPlatform.fuchsia:
+        return GlowingOverscrollIndicator(
+          child: child,
+          showLeading: false,
+          showTrailing: false,
+          axisDirection: axisDirection,
+          color: Theme.of(context).accentColor,
+        );
+    }
+    return null;
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokemon/models/move_model.dart';
 import 'package:pokemon/models/poke_model.dart';
-import 'package:pokemon/utils/calc_util.dart';
 import 'package:pokemon/utils/constants.dart';
 import 'package:sprintf/sprintf.dart';
 

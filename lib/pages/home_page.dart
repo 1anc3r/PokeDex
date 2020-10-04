@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/pages/poke_item_page.dart';
-import 'package:pokemon/utils/constants.dart';
 import 'package:pokemon/widgets/poke_ball_widget.dart';
 import 'package:pokemon/widgets/search_text_field_bar.dart';
 
-import 'item_page.dart';
 import 'move_page.dart';
 import 'poke_list_page.dart';
 
@@ -18,8 +15,8 @@ class HomePageState extends State<HomePage> {
   List _titles = ['宝可梦', '招式', '道具'];
   List _pages = [
     PokeListPage(),
-    PokeItemPage(pokeName: '妙蛙种子'),
-    PokeItemPage(pokeName: '妙蛙种子'),
+    MovePage(),
+    MovePage(),
   ];
 
   @override

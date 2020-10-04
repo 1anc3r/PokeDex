@@ -4,7 +4,6 @@ import 'package:loading/loading.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/modules/poke_module.dart';
 import 'package:pokemon/utils/constants.dart';
-import 'package:pokemon/widgets/poke_ball_widget.dart';
 import 'package:pokemon/widgets/poke_info_widget.dart';
 import 'package:pokemon/widgets/poke_move_widget.dart';
 import 'package:pokemon/widgets/poke_stat_widget.dart';
