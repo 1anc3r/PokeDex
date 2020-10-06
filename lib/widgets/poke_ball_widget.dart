@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pokemon/utils/constants.dart';
+import 'package:pokemon/consts/numbers.dart';
 
 class PokeBallWidget extends StatefulWidget {
   PokeBallWidget({Key key}) : super(key: key);
@@ -35,7 +35,7 @@ class PokemonBallPainter extends CustomPainter {
 
     Rect rect = Rect.fromCircle(
         center: Offset(size.width / 2, size.width / 2), radius: size.width / 2);
-    canvas.drawArc(rect, Constants.PI * 5 / 6, Constants.PI * 1, true, _paint);
+    canvas.drawArc(rect, NUMBERS.PI * 5 / 6, NUMBERS.PI * 1, true, _paint);
 
     _paint.color = Colors.black;
     _paint.style = PaintingStyle.stroke;
@@ -45,9 +45,9 @@ class PokemonBallPainter extends CustomPainter {
         Offset(size.width / 2, size.width / 2), size.width / 2, _paint);
 
     canvas.drawLine(
-        Offset(size.width / 2 - size.width * Constants.RADICAL_THREE / 4,
+        Offset(size.width / 2 - size.width * NUMBERS.RADICAL_THREE / 4,
             size.width * 3 / 4),
-        Offset(size.width / 2 + size.width * Constants.RADICAL_THREE / 4,
+        Offset(size.width / 2 + size.width * NUMBERS.RADICAL_THREE / 4,
             size.width / 4),
         _paint);
 

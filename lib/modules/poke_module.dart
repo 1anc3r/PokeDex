@@ -1,12 +1,15 @@
-import 'package:pokemon/dao/poke_dao.dart';
+import 'package:pokemon/dao/poke_net_dao.dart';
 import 'package:pokemon/models/poke_model.dart';
 
 class PokeModule {
   Map<String, List<PokeModel>> pokes = {};
 
+  static PokeNetDao dao = new PokeNetDao();
+
   factory PokeModule() => _getInstance();
   static PokeModule get instance => _getInstance();
   static PokeModule _instance;
+
   PokeModule._internal() {
     // 初始化
   }
@@ -22,24 +25,22 @@ class PokeModule {
     return instance.pokes = newpokes;
   }
 
-  static PokeModel bindItem(PokeModel newpoke) {
-    return newpoke;
-  }
-
   static Future<Map<String, List<PokeModel>>> fetchList() async {
-    return PokeDao.fetchPokeList()
-        .then((listText) => PokeDao.parsePokeList(listText))
+    return dao
+        .fetchPokeList()
+        .then((listText) => dao.parsePokeList(listText))
         .then((listData) => bindList(listData));
   }
 
   static Future<PokeModel> fetchItem(String name) async {
-    return PokeDao.fetchPokeItem(name)
-        .then((itemText) => PokeDao.parsePokeItem(itemText))
-        .then((itemData) => bindItem(itemData));
+    return dao
+        .fetchPokeItem(name)
+        .then((itemText) => dao.parsePokeItem(itemText));
   }
 
   static Future fetchItemHQImg(PokeModel model) async {
-    return PokeDao.fetchPokeHQImg(model.ndex, model.enname)
+    return dao
+        .fetchPokeImg(model.ndex, model.enname)
         .then((hqImg) => {model.hqImg = hqImg});
   }
 }

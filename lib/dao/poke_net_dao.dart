@@ -3,18 +3,20 @@ import 'dart:async';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+import 'package:pokemon/consts/urls.dart';
 import 'package:pokemon/models/move_model.dart';
 import 'package:pokemon/models/poke_model.dart';
-import 'package:pokemon/utils/constants.dart';
-import 'package:pokemon/utils/log_util.dart';
 
-class PokeDao {
+import 'i_poke_dao.dart';
+
+class PokeNetDao implements IPokeDao {
   static RegExp listTitleRegExp =
       RegExp(r'===<span class=t-(.+?)>\[\[(.+?)\]\]<\/span>===$');
   static RegExp keyValueRegExp = RegExp(r'^|(.+?)=(.+?)$');
 
-  static Future<String> fetchPokeList() async {
-    var listUrl = '${Constants.POKE_INDEX_URL}${Constants.POKE_CN_LIST_URL}';
+  @override
+  Future<String> fetchPokeList() async {
+    var listUrl = '${URLS.POKE_INDEX_URL}?title=宝可梦列表（按全国图鉴编号）/简单版&action=edit';
     return http.get(listUrl).then((http.Response response) {
       Document document = parse(response.body.toString());
       String listText = document
@@ -25,8 +27,9 @@ class PokeDao {
     });
   }
 
-  static Future<String> fetchPokeItem(String name) async {
-    var itemUrl = '${Constants.POKE_INDEX_URL}?title=${name}&action=edit';
+  @override
+  Future<String> fetchPokeItem(String name) async {
+    var itemUrl = '${URLS.POKE_INDEX_URL}?title=${name}&action=edit';
     return http.get(itemUrl).then((http.Response response) {
       Document document = parse(response.body.toString());
       String itemText = document
@@ -37,8 +40,9 @@ class PokeDao {
     });
   }
 
-  static Future<String> fetchPokeHQImg(String ndex, String enname) async {
-    var hqImgUrl = '${Constants.POKE_HQ_IMG_URL}${ndex}${enname}.png';
+  @override
+  Future<String> fetchPokeImg(String ndex, String enname) async {
+    var hqImgUrl = '${URLS.POKE_FILE_URL}${ndex}${enname}.png';
     return http.get(hqImgUrl).then((http.Response response) {
       Document document = parse(response.body.toString());
       String imgUrl = document
@@ -53,7 +57,8 @@ class PokeDao {
     });
   }
 
-  static Map<String, List<PokeModel>> parsePokeList(String listText) {
+  @override
+  Map<String, List<PokeModel>> parsePokeList(String listText) {
     var key = '';
     Map<String, List<PokeModel>> listData = {};
     if (listText.isNotEmpty) {
@@ -81,14 +86,15 @@ class PokeDao {
     return listData;
   }
 
-  static PokeModel parsePokeItem(String itemText) {
+  @override
+  PokeModel parsePokeItem(String itemText) {
     PokeModel model;
     Map<String, dynamic> modelkv = {};
     List<List<MoveModel>> listData = [[], [], [], [], [], [], []];
     if (itemText.isNotEmpty) {
       List<String> lines = itemText.split('\n');
       lines.forEach((line) {
-        modelkv.addAll(parseNormal(line));
+        modelkv.addAll(parsePokeKeyValue(line));
         var move = parseMove(line);
         if (move != null) {
           listData[move.sourceType].add(move);
@@ -104,7 +110,7 @@ class PokeDao {
     }
   }
 
-  static Map<String, dynamic> parseNormal(String line) {
+  static Map<String, dynamic> parsePokeKeyValue(String line) {
     Map<String, dynamic> kv = {};
     if (keyValueRegExp.hasMatch(line)) {
       var key = '', value = '';
@@ -161,7 +167,7 @@ class PokeDao {
     return move;
   }
 
-  static parseCatchMethod(String line) {
+  static MoveModel parseCatchMethod(String line) {
     MoveModel move;
 
     bool flag = line.contains(new RegExp(r'分布/main'));

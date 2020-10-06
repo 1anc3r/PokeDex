@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pokemon/consts/colors.dart';
+import 'package:pokemon/consts/numbers.dart';
+import 'package:pokemon/consts/strings.dart';
+import 'package:pokemon/consts/urls.dart';
 import 'package:pokemon/models/poke_model.dart';
-import 'package:pokemon/utils/constants.dart';
 import 'package:pokemon/widgets/card_in_card_widget.dart';
 import 'package:pokemon/widgets/line_process_widget.dart';
 import 'package:sprintf/sprintf.dart';
@@ -114,43 +117,43 @@ class PokeInfoState extends State<PokeInfoWidget>
     return Expanded(
       child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
         LineProcessWidget(
-            name: '生命',
-            value: poke.speciesStrengths['生命'],
-            process: poke.speciesStrengths['生命'] / 255,
-            color: Constants.POKE_COLOR_MAP['生命']),
+            name: STRINGS.HP,
+            value: poke.speciesStrengths[STRINGS.HP],
+            process: poke.speciesStrengths[STRINGS.HP] / 255,
+            color: COLORS.COLOR_MAP[STRINGS.HP]),
         LineProcessWidget(
-            name: '攻击',
-            value: poke.speciesStrengths['攻击'],
-            process: poke.speciesStrengths['攻击'] / 255,
-            color: Constants.POKE_COLOR_MAP['攻击']),
+            name: STRINGS.ATK,
+            value: poke.speciesStrengths[STRINGS.ATK],
+            process: poke.speciesStrengths[STRINGS.ATK] / 255,
+            color: COLORS.COLOR_MAP[STRINGS.ATK]),
         LineProcessWidget(
-            name: '防御',
-            value: poke.speciesStrengths['防御'],
-            process: poke.speciesStrengths['防御'] / 255,
-            color: Constants.POKE_COLOR_MAP['防御']),
+            name: STRINGS.DEF,
+            value: poke.speciesStrengths[STRINGS.DEF],
+            process: poke.speciesStrengths[STRINGS.DEF] / 255,
+            color: COLORS.COLOR_MAP[STRINGS.DEF]),
         LineProcessWidget(
-            name: '特攻',
-            value: poke.speciesStrengths['特攻'],
-            process: poke.speciesStrengths['特攻'] / 255,
-            color: Constants.POKE_COLOR_MAP['特攻']),
+            name: STRINGS.SAT,
+            value: poke.speciesStrengths[STRINGS.SAT],
+            process: poke.speciesStrengths[STRINGS.SAT] / 255,
+            color: COLORS.COLOR_MAP[STRINGS.SAT]),
         LineProcessWidget(
-            name: '特防',
-            value: poke.speciesStrengths['特防'],
-            process: poke.speciesStrengths['特防'] / 255,
-            color: Constants.POKE_COLOR_MAP['特防']),
+            name: STRINGS.SDE,
+            value: poke.speciesStrengths[STRINGS.SDE],
+            process: poke.speciesStrengths[STRINGS.SDE] / 255,
+            color: COLORS.COLOR_MAP[STRINGS.SDE]),
         LineProcessWidget(
-            name: '速度',
-            value: poke.speciesStrengths['速度'],
-            process: poke.speciesStrengths['速度'] / 255,
-            color: Constants.POKE_COLOR_MAP['速度']),
+            name: STRINGS.SPD,
+            value: poke.speciesStrengths[STRINGS.SPD],
+            process: poke.speciesStrengths[STRINGS.SPD] / 255,
+            color: COLORS.COLOR_MAP[STRINGS.SPD]),
         LineProcessWidget(
-            name: '总和',
-            value: (poke.speciesStrengths['生命'] +
-                poke.speciesStrengths['攻击'] +
-                poke.speciesStrengths['防御'] +
-                poke.speciesStrengths['特攻'] +
-                poke.speciesStrengths['特防'] +
-                poke.speciesStrengths['速度']),
+            name: STRINGS.TOTAL,
+            value: (poke.speciesStrengths[STRINGS.HP] +
+                poke.speciesStrengths[STRINGS.ATK] +
+                poke.speciesStrengths[STRINGS.DEF] +
+                poke.speciesStrengths[STRINGS.SAT] +
+                poke.speciesStrengths[STRINGS.SDE] +
+                poke.speciesStrengths[STRINGS.SPD]),
             process: 1,
             color: Colors.white),
       ]),
@@ -160,7 +163,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemTypesView() {
     return CardInCardWidget(
       text: '属性',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Padding(
         padding: const EdgeInsets.only(left: 4.0, right: 4.0),
         child: Row(
@@ -177,7 +180,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemSpeciesView() {
     return CardInCardWidget(
         text: '分类',
-        color: Constants.POKE_COLOR_MAP[poke.types[0]],
+        color: COLORS.COLOR_MAP[poke.types[0]],
         child: Card(
           color: Colors.white,
           elevation: 0,
@@ -188,7 +191,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemAbilitiesView() {
     return CardInCardWidget(
       text: '特性',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Padding(
         padding: const EdgeInsets.only(left: 4.0, right: 4.0),
         child: Row(
@@ -210,7 +213,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemEgggroupsView() {
     return CardInCardWidget(
       text: '蛋群',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Padding(
         padding: const EdgeInsets.only(left: 4.0, right: 4.0),
         child: Row(
@@ -232,7 +235,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemLv100expView() {
     return CardInCardWidget(
       text: '100级时经验值',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         color: Colors.white,
         elevation: 0,
@@ -244,7 +247,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemHeightView() {
     return CardInCardWidget(
       text: '身高',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         color: Colors.white,
         elevation: 0,
@@ -256,7 +259,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemWeightView() {
     return CardInCardWidget(
       text: '体重',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         color: Colors.white,
         elevation: 0,
@@ -268,25 +271,23 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemGenderView() {
     return CardInCardWidget(
       text: '性别比例',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         color: Colors.white,
         elevation: 0,
         child: Row(children: [
-          Text(
-              '雄性 ${Constants.POKE_GENDER_CODE_MAP[poke.gendercode] * 100}%  '),
+          Text('雄性 ${NUMBERS.POKE_GENDER_CODE_MAP[poke.gendercode] * 100}%  '),
           Container(
             height: 12,
             width: 100,
             child: LinearProgressIndicator(
-              backgroundColor: Constants.POKE_COLOR_MAP['雌性'],
-              valueColor:
-                  AlwaysStoppedAnimation(Constants.POKE_COLOR_MAP['雄性']),
-              value: Constants.POKE_GENDER_CODE_MAP[poke.gendercode],
+              backgroundColor: COLORS.COLOR_MAP['雌性'],
+              valueColor: AlwaysStoppedAnimation(COLORS.COLOR_MAP['雄性']),
+              value: NUMBERS.POKE_GENDER_CODE_MAP[poke.gendercode],
             ),
           ),
           Text(
-              '  雌性 ${(1 - Constants.POKE_GENDER_CODE_MAP[poke.gendercode]) * 100}%  '),
+              '  雌性 ${(1 - NUMBERS.POKE_GENDER_CODE_MAP[poke.gendercode]) * 100}%  '),
         ]),
       ),
     );
@@ -295,7 +296,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemCatchRateView() {
     return CardInCardWidget(
       text: '捕获率',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         color: Colors.white,
         elevation: 0,
@@ -307,7 +308,7 @@ class PokeInfoState extends State<PokeInfoWidget>
   Widget _buildItemEggcyclesView() {
     return CardInCardWidget(
       text: '孵化周期',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         color: Colors.white,
         elevation: 0,
@@ -324,9 +325,9 @@ class PokeInfoState extends State<PokeInfoWidget>
         children: [
           ClipPath(
             child: Container(
-              color: Constants.POKE_COLOR_MAP[type],
+              color: COLORS.COLOR_MAP[type],
               child: Image.asset(
-                '${Constants.POKE_TYPE_ICON_PRE_URL}${type}.png',
+                '${URLS.POKE_TYPE_ICON_PRE_URL}${type}.png',
               ),
             ),
             clipper: TypeIconClipper(),

@@ -1,4 +1,5 @@
-import 'package:pokemon/utils/constants.dart';
+import 'package:pokemon/consts/strings.dart';
+import 'package:pokemon/consts/urls.dart';
 
 import 'move_model.dart';
 
@@ -45,8 +46,8 @@ class PokeModel {
   ];
 
   PokeModel(this.ndex, this.name, this.jname, this.enname) {
-    url = '${Constants.POKE_INDEX_URL}?title=${name}&action=edit';
-    lqImg = '${Constants.POKE_LQ_IMG_URL}/${processName(enname)}.png';
+    url = '${URLS.POKE_INDEX_URL}?title=${name}&action=edit';
+    lqImg = '${URLS.POKE_SPT_URL}/${processName(enname)}.png';
   }
 
   PokeModel.fromJson(Map<String, dynamic> json) {
@@ -55,14 +56,14 @@ class PokeModel {
     }
     if (json['name'] != null) {
       name = json['name']?.toString();
-      url = '${Constants.POKE_INDEX_URL}?title=${name}&action=edit';
+      url = '${URLS.POKE_INDEX_URL}?title=${name}&action=edit';
     }
     if (json['jname'] != null) {
       jname = json['jname']?.toString();
     }
     if (json['enname'] != null) {
       enname = json['enname']?.toString();
-      lqImg = '${Constants.POKE_LQ_IMG_URL}/${processName(this.enname)}.png';
+      lqImg = '${URLS.POKE_SPT_URL}/${processName(this.enname)}.png';
     }
 
     if (json['species'] != null) {
@@ -95,46 +96,46 @@ class PokeModel {
     }
     // 基础点数
     if (json['evhp'] != null) {
-      basePoints.putIfAbsent(Constants.HP, () => int.parse(json['evhp']));
+      basePoints.putIfAbsent(STRINGS.HP, () => int.parse(json['evhp']));
     }
     if (json['evat'] != null) {
-      basePoints.putIfAbsent(Constants.ATK, () => int.parse(json['evat']));
+      basePoints.putIfAbsent(STRINGS.ATK, () => int.parse(json['evat']));
     }
     if (json['evde'] != null) {
-      basePoints.putIfAbsent(Constants.DEF, () => int.parse(json['evde']));
+      basePoints.putIfAbsent(STRINGS.DEF, () => int.parse(json['evde']));
     }
     if (json['evsa'] != null) {
-      basePoints.putIfAbsent(Constants.SAT, () => int.parse(json['evsa']));
+      basePoints.putIfAbsent(STRINGS.SAT, () => int.parse(json['evsa']));
     }
     if (json['evsd'] != null) {
-      basePoints.putIfAbsent(Constants.SDE, () => int.parse(json['evsd']));
+      basePoints.putIfAbsent(STRINGS.SDE, () => int.parse(json['evsd']));
     }
     if (json['evsp'] != null) {
-      basePoints.putIfAbsent(Constants.SPD, () => int.parse(json['evsp']));
+      basePoints.putIfAbsent(STRINGS.SPD, () => int.parse(json['evsp']));
     }
     // 种族值
     if (json['HP'] != null) {
-      speciesStrengths.putIfAbsent(Constants.HP, () => int.parse(json['HP']));
+      speciesStrengths.putIfAbsent(STRINGS.HP, () => int.parse(json['HP']));
     }
-    if (json[Constants.ATK] != null) {
+    if (json[STRINGS.ATK] != null) {
       speciesStrengths.putIfAbsent(
-          Constants.ATK, () => int.parse(json[Constants.ATK]));
+          STRINGS.ATK, () => int.parse(json[STRINGS.ATK]));
     }
-    if (json[Constants.DEF] != null) {
+    if (json[STRINGS.DEF] != null) {
       speciesStrengths.putIfAbsent(
-          Constants.DEF, () => int.parse(json[Constants.DEF]));
+          STRINGS.DEF, () => int.parse(json[STRINGS.DEF]));
     }
-    if (json[Constants.SAT] != null) {
+    if (json[STRINGS.SAT] != null) {
       speciesStrengths.putIfAbsent(
-          Constants.SAT, () => int.parse(json[Constants.SAT]));
+          STRINGS.SAT, () => int.parse(json[STRINGS.SAT]));
     }
-    if (json[Constants.SDE] != null) {
+    if (json[STRINGS.SDE] != null) {
       speciesStrengths.putIfAbsent(
-          Constants.SDE, () => int.parse(json[Constants.SDE]));
+          STRINGS.SDE, () => int.parse(json[STRINGS.SDE]));
     }
-    if (json[Constants.SPD] != null) {
+    if (json[STRINGS.SPD] != null) {
       speciesStrengths.putIfAbsent(
-          Constants.SPD, () => int.parse(json[Constants.SPD]));
+          STRINGS.SPD, () => int.parse(json[STRINGS.SPD]));
     }
 
     var typNum = 1;

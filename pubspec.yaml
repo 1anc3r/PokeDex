@@ -33,6 +33,7 @@ dependencies:
   html: ^0.14.0+2
   sprintf: ^4.0.0
   loading: ^1.0.2
+  flutter_sticky_header: ^0.5.0
 
 dev_dependencies:
   flutter_test:
@@ -82,29 +83,39 @@ flutter:
 
 
   assets:
-    - assets/icons/20px-LPLE_一般.png
-    - assets/icons/20px-LPLE_格斗.png
-    - assets/icons/20px-LPLE_飞行.png
-    - assets/icons/20px-LPLE_毒.png
-    - assets/icons/20px-LPLE_地面.png
-    - assets/icons/20px-LPLE_岩石.png
-    - assets/icons/20px-LPLE_虫.png
-    - assets/icons/20px-LPLE_幽灵.png
-    - assets/icons/20px-LPLE_钢.png
-    - assets/icons/20px-LPLE_火.png
-    - assets/icons/20px-LPLE_水.png
-    - assets/icons/20px-LPLE_草.png
-    - assets/icons/20px-LPLE_电.png
-    - assets/icons/20px-LPLE_超能力.png
-    - assets/icons/20px-LPLE_冰.png
-    - assets/icons/20px-LPLE_龙.png
-    - assets/icons/20px-LPLE_恶.png
-    - assets/icons/20px-LPLE_妖精.png
-    - assets/pikachu/260px-025Pikachu-Original.webp
-    - assets/pikachu/260px-025Pikachu-Partner.webp
-    - assets/pikachu/260px-025Pikachu-Hoenn.webp
-    - assets/pikachu/260px-025Pikachu-Sinnoh.webp
-    - assets/pikachu/260px-025Pikachu-Unova.webp
-    - assets/pikachu/260px-025Pikachu-Kalos.webp
-    - assets/pikachu/260px-025Pikachu-Alola.webp
-    - assets/pikachu/260px-025Pikachu-World.webp
+    - assets/icons/types/20px-LPLE_一般.png
+    - assets/icons/types/20px-LPLE_格斗.png
+    - assets/icons/types/20px-LPLE_飞行.png
+    - assets/icons/types/20px-LPLE_毒.png
+    - assets/icons/types/20px-LPLE_地面.png
+    - assets/icons/types/20px-LPLE_岩石.png
+    - assets/icons/types/20px-LPLE_虫.png
+    - assets/icons/types/20px-LPLE_幽灵.png
+    - assets/icons/types/20px-LPLE_钢.png
+    - assets/icons/types/20px-LPLE_火.png
+    - assets/icons/types/20px-LPLE_水.png
+    - assets/icons/types/20px-LPLE_草.png
+    - assets/icons/types/20px-LPLE_电.png
+    - assets/icons/types/20px-LPLE_超能力.png
+    - assets/icons/types/20px-LPLE_冰.png
+    - assets/icons/types/20px-LPLE_龙.png
+    - assets/icons/types/20px-LPLE_恶.png
+    - assets/icons/types/20px-LPLE_妖精.png
+    - assets/icons/pikachus/260px-025Pikachu-Original.webp
+    - assets/icons/pikachus/260px-025Pikachu-Partner.webp
+    - assets/icons/pikachus/260px-025Pikachu-Hoenn.webp
+    - assets/icons/pikachus/260px-025Pikachu-Sinnoh.webp
+    - assets/icons/pikachus/260px-025Pikachu-Unova.webp
+    - assets/icons/pikachus/260px-025Pikachu-Kalos.webp
+    - assets/icons/pikachus/260px-025Pikachu-Alola.webp
+    - assets/icons/pikachus/260px-025Pikachu-World.webp
+    - assets/icons/menus/图鉴.png
+    - assets/icons/menus/属性.png
+    - assets/icons/menus/蛋群.png
+    - assets/icons/menus/分布.png
+    - assets/icons/menus/道具.png
+    - assets/icons/menus/招式.png
+    - assets/icons/menus/特性.png
+    - assets/icons/menus/个性.png
+    - assets/icons/menus/性格.png
+    - assets/icons/menus/计算.png

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pokemon/consts/colors.dart';
 import 'package:pokemon/models/move_model.dart';
 import 'package:pokemon/models/poke_model.dart';
-import 'package:pokemon/utils/constants.dart';
 import 'package:sprintf/sprintf.dart';
 
 import 'card_in_card_widget.dart';
@@ -36,7 +36,7 @@ class PokeMoveWidget extends StatelessWidget {
   Widget _buildTableListView(String text, List<MoveModel> moves) {
     return CardInCardWidget(
       text: text,
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -61,7 +61,7 @@ class PokeMoveWidget extends StatelessWidget {
                   children: _buildTableRowView(
                       move,
                       move.name == '招式'
-                          ? Constants.POKE_COLOR_MAP[poke.types[0]]
+                          ? COLORS.COLOR_MAP[poke.types[0]]
                           : Colors.white,
                       move.name == '招式' ? Colors.white : Colors.black),
                 );

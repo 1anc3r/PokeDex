@@ -3,27 +3,27 @@ import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
 import 'package:pokemon/behavior/over_scroll_behavior.dart';
 import 'package:pokemon/consts/urls.dart';
-import 'package:pokemon/models/poke_model.dart';
-import 'package:pokemon/modules/poke_module.dart';
+import 'package:pokemon/models/move_model.dart';
+import 'package:pokemon/modules/move_module.dart';
 import 'package:pokemon/pages/poke_item_page.dart';
 
-class PokeListWidget extends StatefulWidget {
-  PokeListWidget({Key key}) : super(key: key);
+class MoveListWidget extends StatefulWidget {
+  MoveListWidget({Key key}) : super(key: key);
 
   @override
-  PokeListWidgetState createState() {
-    return PokeListWidgetState();
+  MoveListWidgetState createState() {
+    return MoveListWidgetState();
   }
 }
 
-class PokeListWidgetState extends State<PokeListWidget> {
+class MoveListWidgetState extends State<MoveListWidget> {
   int tab;
   bool loadCompleted = false;
 
   @override
   void initState() {
     super.initState();
-    PokeModule.fetchList().whenComplete(() => setState(() {
+    MoveModule.fetchList().whenComplete(() => setState(() {
           tab = 0;
           loadCompleted = true;
         }));
@@ -56,10 +56,10 @@ class PokeListWidgetState extends State<PokeListWidget> {
           child: ScrollConfiguration(
             behavior: OverScrollBehavior(),
             child: ListView.builder(
-                itemCount: PokeModule.instance.pokes.keys.length,
+                itemCount: MoveModule.instance.moves.keys.length,
                 itemBuilder: (context, index) {
                   return _buildListTitleCardView(
-                      context, PokeModule.instance.pokes.keys.elementAt(index));
+                      context, MoveModule.instance.moves.keys.elementAt(index));
                 }),
           ),
         ),
@@ -72,13 +72,13 @@ class PokeListWidgetState extends State<PokeListWidget> {
           child: ScrollConfiguration(
             behavior: OverScrollBehavior(),
             child: ListView.builder(
-              itemCount: PokeModule.instance
-                  .pokes[PokeModule.instance.pokes.keys.elementAt(tab)].length,
+              itemCount: MoveModule.instance
+                  .moves[MoveModule.instance.moves.keys.elementAt(tab)].length,
               itemBuilder: (context, index) {
                 return _buildListItemCardView(
                     context,
-                    PokeModule.instance.pokes[
-                        PokeModule.instance.pokes.keys.elementAt(tab)][index]);
+                    MoveModule.instance.moves[
+                        MoveModule.instance.moves.keys.elementAt(tab)][index]);
               },
             ),
           ),
@@ -91,13 +91,13 @@ class PokeListWidgetState extends State<PokeListWidget> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          if (PokeModule.instance.pokes.keys.length > 0) {
-            tab = PokeModule.instance.pokes.keys.toList().indexOf(key);
+          if (MoveModule.instance.moves.keys.length > 0) {
+            tab = MoveModule.instance.moves.keys.toList().indexOf(key);
           }
         });
       },
       child: Container(
-        color: tab == PokeModule.instance.pokes.keys.toList().indexOf(key)
+        color: tab == MoveModule.instance.moves.keys.toList().indexOf(key)
             ? Colors.red
             : Colors.white,
         child: new Padding(
@@ -106,7 +106,7 @@ class PokeListWidgetState extends State<PokeListWidget> {
             Container(
               width: 36,
               height: 36,
-              child: Image.asset(URLS.POKE_PIKACHU_MAP[key.split(' ')[0]]),
+              child: Image.asset(URLS.POKE_PIKACHU_MAP[key]),
             ),
             Text(
               key.replaceAll(' ', '\n'),
@@ -115,7 +115,7 @@ class PokeListWidgetState extends State<PokeListWidget> {
                 fontWeight: FontWeight.normal,
                 fontSize: 12,
                 color:
-                    tab == PokeModule.instance.pokes.keys.toList().indexOf(key)
+                    tab == MoveModule.instance.moves.keys.toList().indexOf(key)
                         ? Colors.white
                         : Colors.black,
               ),
@@ -126,7 +126,7 @@ class PokeListWidgetState extends State<PokeListWidget> {
     );
   }
 
-  Widget _buildListItemCardView(BuildContext context, PokeModel model) {
+  Widget _buildListItemCardView(BuildContext context, MoveModel model) {
     return GestureDetector(
       onTap: () => _navigateToItem(context, model.name),
       child: Card(
@@ -137,11 +137,11 @@ class PokeListWidgetState extends State<PokeListWidget> {
           child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.network(
-                  model.lqImg,
-                  width: 50.0,
-                  height: 50.0,
-                ),
+                // Image.network(
+                //   model.lqImg,
+                //   width: 50.0,
+                //   height: 50.0,
+                // ),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
@@ -150,7 +150,7 @@ class PokeListWidgetState extends State<PokeListWidget> {
                         children: [
                           Row(
                             children: [
-                              _buildItemNumberCardView('${model.ndex}'),
+                              _buildItemNumberCardView('${model.n}'),
                               Text(
                                 model.name,
                                 textAlign: TextAlign.left,

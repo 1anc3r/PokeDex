@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pokemon/consts/colors.dart';
+import 'package:pokemon/consts/numbers.dart';
+import 'package:pokemon/consts/strings.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/utils/calc_util.dart';
-import 'package:pokemon/utils/constants.dart';
 import 'package:pokemon/widgets/card_in_card_widget.dart';
 import 'package:pokemon/widgets/line_process_widget.dart';
 
@@ -54,12 +56,12 @@ class PokeStatState extends State<PokeStatWidget>
         CustomPaint(
           child: Container(),
           painter: HexagonTextPainter(texts: [
-            '${Constants.HP}\n${poke.speciesStrengths[Constants.HP]}',
-            '${Constants.ATK}\n${poke.speciesStrengths[Constants.ATK]}',
-            '${Constants.DEF}\n${poke.speciesStrengths[Constants.DEF]}',
-            '${Constants.SPD}\n${poke.speciesStrengths[Constants.SPD]}',
-            '${Constants.SAT}\n${poke.speciesStrengths[Constants.SAT]}',
-            '${Constants.SDE}\n${poke.speciesStrengths[Constants.SDE]}'
+            '${STRINGS.HP}\n${poke.speciesStrengths[STRINGS.HP]}',
+            '${STRINGS.ATK}\n${poke.speciesStrengths[STRINGS.ATK]}',
+            '${STRINGS.DEF}\n${poke.speciesStrengths[STRINGS.DEF]}',
+            '${STRINGS.SPD}\n${poke.speciesStrengths[STRINGS.SPD]}',
+            '${STRINGS.SAT}\n${poke.speciesStrengths[STRINGS.SAT]}',
+            '${STRINGS.SDE}\n${poke.speciesStrengths[STRINGS.SDE]}'
           ]),
         ),
         Padding(
@@ -78,12 +80,12 @@ class PokeStatState extends State<PokeStatWidget>
               child: Container(),
               painter:
                   HexagonClipPainter(paintColor: Color(0x80C39CD8), precents: [
-                poke.speciesStrengths[Constants.HP] / 255,
-                poke.speciesStrengths[Constants.ATK] / 255,
-                poke.speciesStrengths[Constants.DEF] / 255,
-                poke.speciesStrengths[Constants.SPD] / 255,
-                poke.speciesStrengths[Constants.SAT] / 255,
-                poke.speciesStrengths[Constants.SDE] / 255,
+                poke.speciesStrengths[STRINGS.HP] / 255,
+                poke.speciesStrengths[STRINGS.ATK] / 255,
+                poke.speciesStrengths[STRINGS.DEF] / 255,
+                poke.speciesStrengths[STRINGS.SPD] / 255,
+                poke.speciesStrengths[STRINGS.SAT] / 255,
+                poke.speciesStrengths[STRINGS.SDE] / 255,
               ]),
             ),
           ]),
@@ -95,25 +97,20 @@ class PokeStatState extends State<PokeStatWidget>
   Widget _buildBasePointsView() {
     return CardInCardWidget(
       text: '取得基础点数',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Row(children: [
-        _buildTextCardView('${Constants.HP}\n${poke.basePoints[Constants.HP]}',
-            Constants.POKE_COLOR_MAP[Constants.HP]),
-        _buildTextCardView(
-            '${Constants.ATK}\n${poke.basePoints[Constants.ATK]}',
-            Constants.POKE_COLOR_MAP[Constants.ATK]),
-        _buildTextCardView(
-            '${Constants.DEF}\n${poke.basePoints[Constants.DEF]}',
-            Constants.POKE_COLOR_MAP[Constants.DEF]),
-        _buildTextCardView(
-            '${Constants.SAT}\n${poke.basePoints[Constants.SAT]}',
-            Constants.POKE_COLOR_MAP[Constants.SAT]),
-        _buildTextCardView(
-            '${Constants.SDE}\n${poke.basePoints[Constants.SDE]}',
-            Constants.POKE_COLOR_MAP[Constants.SDE]),
-        _buildTextCardView(
-            '${Constants.SPD}\n${poke.basePoints[Constants.SPD]}',
-            Constants.POKE_COLOR_MAP[Constants.SPD]),
+        _buildTextCardView('${STRINGS.HP}\n${poke.basePoints[STRINGS.HP]}',
+            COLORS.COLOR_MAP[STRINGS.HP]),
+        _buildTextCardView('${STRINGS.ATK}\n${poke.basePoints[STRINGS.ATK]}',
+            COLORS.COLOR_MAP[STRINGS.ATK]),
+        _buildTextCardView('${STRINGS.DEF}\n${poke.basePoints[STRINGS.DEF]}',
+            COLORS.COLOR_MAP[STRINGS.DEF]),
+        _buildTextCardView('${STRINGS.SAT}\n${poke.basePoints[STRINGS.SAT]}',
+            COLORS.COLOR_MAP[STRINGS.SAT]),
+        _buildTextCardView('${STRINGS.SDE}\n${poke.basePoints[STRINGS.SDE]}',
+            COLORS.COLOR_MAP[STRINGS.SDE]),
+        _buildTextCardView('${STRINGS.SPD}\n${poke.basePoints[STRINGS.SPD]}',
+            COLORS.COLOR_MAP[STRINGS.SPD]),
       ]),
     );
   }
@@ -121,7 +118,7 @@ class PokeStatState extends State<PokeStatWidget>
   Widget _buildSpeciesStrengthView() {
     return CardInCardWidget(
       text: '能力值',
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       child: Card(
         child: Table(
           columnWidths: const {
@@ -140,12 +137,12 @@ class PokeStatState extends State<PokeStatWidget>
               _buildTableTitleView('50级时'),
               _buildTableTitleView('100级时'),
             ]),
-            TableRow(children: _buildTableCellView(Constants.HP)),
-            TableRow(children: _buildTableCellView(Constants.ATK)),
-            TableRow(children: _buildTableCellView(Constants.DEF)),
-            TableRow(children: _buildTableCellView(Constants.SAT)),
-            TableRow(children: _buildTableCellView(Constants.SDE)),
-            TableRow(children: _buildTableCellView(Constants.SPD)),
+            TableRow(children: _buildTableCellView(STRINGS.HP)),
+            TableRow(children: _buildTableCellView(STRINGS.ATK)),
+            TableRow(children: _buildTableCellView(STRINGS.DEF)),
+            TableRow(children: _buildTableCellView(STRINGS.SAT)),
+            TableRow(children: _buildTableCellView(STRINGS.SDE)),
+            TableRow(children: _buildTableCellView(STRINGS.SPD)),
           ],
         ),
       ),
@@ -154,7 +151,7 @@ class PokeStatState extends State<PokeStatWidget>
 
   Widget _buildTableTitleView(String text) {
     return Container(
-      color: Constants.POKE_COLOR_MAP[poke.types[0]],
+      color: COLORS.COLOR_MAP[poke.types[0]],
       padding: const EdgeInsets.all(2.0),
       alignment: Alignment.center,
       child: Text(
@@ -175,7 +172,7 @@ class PokeStatState extends State<PokeStatWidget>
           name: text,
           value: poke.speciesStrengths[text],
           process: poke.speciesStrengths[text] / 255,
-          color: Constants.POKE_COLOR_MAP[text]),
+          color: COLORS.COLOR_MAP[text]),
       Container(
         padding: const EdgeInsets.all(2.0),
         alignment: Alignment.center,
@@ -231,31 +228,31 @@ class HexagonClipPainter extends CustomPainter {
       size.width / 2, // 1 : x1
       size.width, //  // 2 : x2
       0, // 3 : y0
-      size.width / (2 * Constants.RADICAL_THREE), // 4 : y1
-      3 * size.width / (2 * Constants.RADICAL_THREE), // 5 : y2
-      2 * size.width / Constants.RADICAL_THREE // 6 : y3
+      size.width / (2 * NUMBERS.RADICAL_THREE), // 4 : y1
+      3 * size.width / (2 * NUMBERS.RADICAL_THREE), // 5 : y2
+      2 * size.width / NUMBERS.RADICAL_THREE // 6 : y3
     ];
 
     // north
     path.moveTo(
-        points[1], (1 - precents[0]) * size.width / Constants.RADICAL_THREE);
+        points[1], (1 - precents[0]) * size.width / NUMBERS.RADICAL_THREE);
     // north-east
     path.lineTo(((1 + precents[1]) / 2 * size.width),
-        (2 - precents[1]) * size.width / 2 / Constants.RADICAL_THREE);
+        (2 - precents[1]) * size.width / 2 / NUMBERS.RADICAL_THREE);
     // south-east
     path.lineTo(((1 + precents[2]) / 2 * size.width),
-        (2 + precents[2]) * size.width / 2 / Constants.RADICAL_THREE);
+        (2 + precents[2]) * size.width / 2 / NUMBERS.RADICAL_THREE);
     // south
     path.lineTo(
-        points[1], (1 + precents[3]) * size.width / Constants.RADICAL_THREE);
+        points[1], (1 + precents[3]) * size.width / NUMBERS.RADICAL_THREE);
     // south-west
     path.lineTo(((1 - precents[4]) / 2 * size.width),
-        (2 + precents[4]) * size.width / 2 / Constants.RADICAL_THREE);
+        (2 + precents[4]) * size.width / 2 / NUMBERS.RADICAL_THREE);
     // north-west
     path.lineTo((1 - precents[5]) / 2 * size.width,
-        (2 - precents[5]) * size.width / 2 / Constants.RADICAL_THREE);
+        (2 - precents[5]) * size.width / 2 / NUMBERS.RADICAL_THREE);
     path.lineTo(
-        points[1], (1 - precents[0]) * size.width / Constants.RADICAL_THREE);
+        points[1], (1 - precents[0]) * size.width / NUMBERS.RADICAL_THREE);
     path.close();
 
     canvas.drawPath(path, _paint);
@@ -281,9 +278,9 @@ class HexagonLinePainter extends CustomPainter {
       size.width / 2, // 1 : x1
       size.width, //  // 2 : x2
       0, // 3 : y0
-      size.width / (2 * Constants.RADICAL_THREE), // 4 : y1
-      3 * size.width / (2 * Constants.RADICAL_THREE), // 5 : y2
-      2 * size.width / Constants.RADICAL_THREE // 6 : y3
+      size.width / (2 * NUMBERS.RADICAL_THREE), // 4 : y1
+      3 * size.width / (2 * NUMBERS.RADICAL_THREE), // 5 : y2
+      2 * size.width / NUMBERS.RADICAL_THREE // 6 : y3
     ];
 
     canvas.drawLine(
@@ -310,9 +307,9 @@ class HexagonTextPainter extends CustomPainter {
       size.width / 2, // 1 : x1
       size.width, //  // 2 : x2
       0, // 3 : y0
-      size.width / (2 * Constants.RADICAL_THREE), // 4 : y1
-      3 * size.width / (2 * Constants.RADICAL_THREE), // 5 : y2
-      2 * size.width / Constants.RADICAL_THREE // 6 : y3
+      size.width / (2 * NUMBERS.RADICAL_THREE), // 4 : y1
+      3 * size.width / (2 * NUMBERS.RADICAL_THREE), // 5 : y2
+      2 * size.width / NUMBERS.RADICAL_THREE // 6 : y3
     ];
 
     _paintText(canvas, size, texts[0], points[1] - 12, points[3] - 18);

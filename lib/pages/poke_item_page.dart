@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
+import 'package:pokemon/consts/colors.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/modules/poke_module.dart';
-import 'package:pokemon/utils/constants.dart';
 import 'package:pokemon/widgets/poke_info_widget.dart';
 import 'package:pokemon/widgets/poke_move_widget.dart';
 import 'package:pokemon/widgets/poke_stat_widget.dart';
@@ -81,7 +81,7 @@ class PokeItemPageState extends State<PokeItemPage>
     return Scaffold(
         appBar: AppBar(
           backgroundColor:
-              Constants.POKE_COLOR_MAP[poke != null ? poke.types[0] : '一般'],
+              COLORS.COLOR_MAP[poke != null ? poke.types[0] : '一般'],
           toolbarHeight: kToolbarHeight,
           bottom: TabBar(
             indicatorColor: Colors.white,

@@ -1,4 +1,5 @@
 class MoveModel {
+  String n; // 1
   String name; // 拍击
   String jname; // はたく
   String enname; // Pound

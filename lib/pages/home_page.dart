@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/pages/blank_page.dart';
 import 'package:pokemon/widgets/poke_ball_widget.dart';
-import 'package:pokemon/widgets/poke_list_widget.dart';
 import 'package:pokemon/widgets/search_text_field_bar.dart';
 
 import 'main_menu_page.dart';
@@ -13,11 +12,9 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  List _titles = ['图鉴', '招式', '道具'];
+  List _titles = ['PokeDex', '招式', '道具'];
   List _pages = [
-    MainMenuPage(
-      child: PokeListWidget(),
-    ),
+    MainMenuPage(),
     BlankPage(),
     BlankPage(),
   ];
@@ -31,8 +28,8 @@ class HomePageState extends State<HomePage> {
         actions: <Widget>[
           SearchTextFieldBar(
             heroTag: "SearchBar",
-            label: '搜索${_titles[_selectedIndex]}',
-            hint: '${_titles[_selectedIndex]}名字或编号',
+            label: '搜索',
+            hint: '输入名字或编号',
           ),
           IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
         ],
