@@ -15,7 +15,6 @@ class MoveNetDao implements IMoveDao {
   @override
   Future<String> fetchMoveList() async {
     var listUrl = '${URLS.POKE_INDEX_URL}?title=招式列表&action=edit';
-    LogUtil.Log('MoveNetDao', listUrl);
     return http.get(listUrl).then((http.Response response) {
       Document document = parse(response.body.toString());
       String listText = document

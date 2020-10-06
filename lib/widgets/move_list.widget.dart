@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
 import 'package:pokemon/behavior/over_scroll_behavior.dart';
+import 'package:pokemon/consts/strings.dart';
 import 'package:pokemon/consts/urls.dart';
 import 'package:pokemon/models/move_model.dart';
 import 'package:pokemon/modules/move_module.dart';
@@ -109,7 +110,7 @@ class MoveListWidgetState extends State<MoveListWidget> {
               child: Image.asset(URLS.POKE_PIKACHU_MAP[key]),
             ),
             Text(
-              key.replaceAll(' ', '\n'),
+              STRINGS.GAME_GEN_MAP[key],
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.normal,
