@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/pages/blank_page.dart';
 import 'package:pokemon/widgets/poke_ball_widget.dart';
-import 'package:pokemon/widgets/search_text_field_bar.dart';
+import 'package:pokemon/views/search_text_field_bar.dart';
 
 import 'main_menu_page.dart';
 

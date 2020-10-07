@@ -25,10 +25,21 @@ class COLORS {
     STRINGS.MALE: Color(0xFF3355FF),
     STRINGS.FEMALE: Color(0xFFFF77DD),
     STRINGS.HP: Color(0xFF8AC654),
-    STRINGS.ATK: Color(0xFFF8CB3C),
-    STRINGS.DEF: Color(0xFFD98837),
-    STRINGS.SAT: Color(0xFF59C3D0),
-    STRINGS.SDE: Color(0xFF5890CD),
-    STRINGS.SPD: Color(0xFFA456D0),
+    STRINGS.ATK: Color(0xFFFAE192),
+    STRINGS.DEF: Color(0xFFFBB977),
+    STRINGS.SAT: Color(0xFFA2D4DA),
+    STRINGS.SDE: Color(0xFF89A9CD),
+    STRINGS.SPD: Color(0xFFC39CD8),
+    '酸': Color(0xFFFAE078),
+    '甜': Color(0xFFFA92B2),
+    '苦': Color(0xFFA7DB8D),
+    '辣': Color(0xFFF5AC78),
+    '涩': Color(0xFF9DB7F5),
   };
+
+  static const Color NATURE_TAB_TITLE = Color(0xFFFFE0C4);
+  static const Color NATURE_TAB_LINE = Color(0xFFF8483E);
+
+  static const Color CHAR_TAB_TITLE = Color(0xFFCCCCCC);
+  static const Color CHAR_TAB_LINE = Color(0xFF999999);
 }

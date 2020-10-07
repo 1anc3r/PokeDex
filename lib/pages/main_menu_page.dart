@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/consts/urls.dart';
+import 'package:pokemon/widgets/char_table_widget.dart';
 import 'package:pokemon/widgets/move_list.widget.dart';
-import 'package:pokemon/widgets/poke_ball_widget.dart';
+import 'package:pokemon/widgets/nature_table_widget.dart';
 import 'package:pokemon/widgets/poke_list_widget.dart';
 
 class MainMenuPage extends StatefulWidget {
@@ -121,6 +122,12 @@ class MainMenuPageState extends State<MainMenuPage> {
         break;
       case 5:
         w = MoveListWidget();
+        break;
+      case 7:
+        w = CharTableWidget();
+        break;
+      case 8:
+        w = NatureTableWidget();
         break;
       default:
         w = PokeListWidget();

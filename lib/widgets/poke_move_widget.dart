@@ -4,8 +4,7 @@ import 'package:pokemon/consts/colors.dart';
 import 'package:pokemon/models/move_model.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:sprintf/sprintf.dart';
-
-import 'card_in_card_widget.dart';
+import 'package:pokemon/views/card_in_card_widget.dart';
 
 class PokeMoveWidget extends StatelessWidget {
   PokeMoveWidget({this.poke});

@@ -7,8 +7,8 @@ import 'package:pokemon/consts/numbers.dart';
 import 'package:pokemon/consts/strings.dart';
 import 'package:pokemon/models/poke_model.dart';
 import 'package:pokemon/utils/calc_util.dart';
-import 'package:pokemon/widgets/card_in_card_widget.dart';
-import 'package:pokemon/widgets/line_process_widget.dart';
+import 'package:pokemon/views/card_in_card_widget.dart';
+import 'package:pokemon/views/line_process_widget.dart';
 
 class PokeStatWidget extends StatefulWidget {
   final PokeModel poke;

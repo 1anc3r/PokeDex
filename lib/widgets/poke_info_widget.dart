@@ -5,8 +5,8 @@ import 'package:pokemon/consts/numbers.dart';
 import 'package:pokemon/consts/strings.dart';
 import 'package:pokemon/consts/urls.dart';
 import 'package:pokemon/models/poke_model.dart';
-import 'package:pokemon/widgets/card_in_card_widget.dart';
-import 'package:pokemon/widgets/line_process_widget.dart';
+import 'package:pokemon/views/card_in_card_widget.dart';
+import 'package:pokemon/views/line_process_widget.dart';
 import 'package:sprintf/sprintf.dart';
 
 class PokeInfoWidget extends StatefulWidget {
