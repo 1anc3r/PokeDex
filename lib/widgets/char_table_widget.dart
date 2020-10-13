@@ -73,7 +73,7 @@ class CharTableWidget extends StatelessWidget {
   List<Widget> _buildTableCellView(int row, String text) {
     return [
       Container(
-        height: 44,
+        height: 96,
         color: COLORS.COLOR_MAP[text],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
@@ -83,52 +83,52 @@ class CharTableWidget extends StatelessWidget {
         ),
       ),
       Container(
-        height: 44,
+        height: 96,
         color: COLORS.COLOR_MAP[text],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
         child: Text(
-          '${STRINGS.CHAR_TABLE[0][row].split('\n')[0]}',
+          '${STRINGS.CHAR_TABLE[0][row].split('\n')[0]}\n${STRINGS.CHAR_TABLE[0][row].split('\n')[1]}',
           textAlign: TextAlign.center,
         ),
       ),
       Container(
-        height: 44,
+        height: 96,
         color: COLORS.COLOR_MAP[text],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
         child: Text(
-          '${STRINGS.CHAR_TABLE[1][row].split('\n')[0]}',
+          '${STRINGS.CHAR_TABLE[1][row].split('\n')[0]}\n${STRINGS.CHAR_TABLE[1][row].split('\n')[1]}',
           textAlign: TextAlign.center,
         ),
       ),
       Container(
-        height: 44,
+        height: 96,
         color: COLORS.COLOR_MAP[text],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
         child: Text(
-          '${STRINGS.CHAR_TABLE[2][row].split('\n')[0]}',
+          '${STRINGS.CHAR_TABLE[2][row].split('\n')[0]}\n${STRINGS.CHAR_TABLE[2][row].split('\n')[1]}',
           textAlign: TextAlign.center,
         ),
       ),
       Container(
-        height: 44,
+        height: 96,
         color: COLORS.COLOR_MAP[text],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
         child: Text(
-          '${STRINGS.CHAR_TABLE[3][row].split('\n')[0]}',
+          '${STRINGS.CHAR_TABLE[3][row].split('\n')[0]}\n${STRINGS.CHAR_TABLE[3][row].split('\n')[1]}',
           textAlign: TextAlign.center,
         ),
       ),
       Container(
-        height: 44,
+        height: 96,
         color: COLORS.COLOR_MAP[text],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
         child: Text(
-          '${STRINGS.CHAR_TABLE[4][row].split('\n')[0]}',
+          '${STRINGS.CHAR_TABLE[4][row].split('\n')[0]}\n${STRINGS.CHAR_TABLE[4][row].split('\n')[1]}',
           textAlign: TextAlign.center,
         ),
       ),

@@ -41,12 +41,12 @@ class HomePageState extends State<HomePage> {
         child: Row(
           children: [
             IconButton(
-              icon: Icon(Icons.usb),
+              icon: Icon(Icons.extension),
               onPressed: () => {_onItemTapped(1)},
             ),
             SizedBox(), //中间位置空出
             IconButton(
-              icon: Icon(Icons.laptop_mac),
+              icon: Icon(Icons.settings),
               onPressed: () => {_onItemTapped(2)},
             ),
           ],

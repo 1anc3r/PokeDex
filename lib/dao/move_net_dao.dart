@@ -6,11 +6,9 @@ import 'package:http/http.dart' as http;
 import 'package:pokemon/consts/urls.dart';
 import 'package:pokemon/dao/i_move_dao.dart';
 import 'package:pokemon/models/move_model.dart';
-import 'package:pokemon/utils/log_util.dart';
 
 class MoveNetDao implements IMoveDao {
   static RegExp listTitleRegExp = RegExp(r'==(.+?)==$');
-  static RegExp keyValueRegExp = RegExp(r'{{Movelist/gen/ex|(.+?)}}$');
 
   @override
   Future<String> fetchMoveList() async {
@@ -97,24 +95,5 @@ class MoveNetDao implements IMoveDao {
   @override
   MoveModel parseMoveItem(String itemText) {
     return null;
-  }
-
-  static Map<String, dynamic> parseMoveKeyValue(String line) {
-    Map<String, dynamic> kv = {};
-    if (keyValueRegExp.hasMatch(line)) {
-      var key = '', value = '';
-      var matches = keyValueRegExp.allMatches(line);
-      if (matches.length > 1) {
-        var match = matches.elementAt(1);
-        if (match.groupCount == 2) {
-          key = match.group(1);
-          value = match.group(2);
-        }
-      }
-      if (key.isNotEmpty && value.isNotEmpty) {
-        kv.putIfAbsent(key, () => value);
-      }
-    }
-    return kv;
   }
 }

@@ -89,14 +89,16 @@ class NatureTableWidget extends StatelessWidget {
   List<Widget> _buildTableCellView(int row) {
     return [
       Container(
+        height: 48,
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
         child: Text(
-          '${STRINGS.NATURE_TABLE[row][0].split('\n')[0]}',
+          '${STRINGS.NATURE_TABLE[row][0].split('\n')[0]}\n${STRINGS.NATURE_TABLE[row][0].split('\n')[1]}',
           textAlign: TextAlign.center,
         ),
       ),
       Container(
+        height: 48,
         color: COLORS.COLOR_MAP[STRINGS.NATURE_TABLE[row][1]],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
@@ -106,6 +108,7 @@ class NatureTableWidget extends StatelessWidget {
         ),
       ),
       Container(
+        height: 48,
         color: COLORS.COLOR_MAP[STRINGS.NATURE_TABLE[row][2]],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
@@ -115,6 +118,7 @@ class NatureTableWidget extends StatelessWidget {
         ),
       ),
       Container(
+        height: 48,
         color: COLORS.COLOR_MAP[STRINGS.NATURE_TABLE[row][3]],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
@@ -124,6 +128,7 @@ class NatureTableWidget extends StatelessWidget {
         ),
       ),
       Container(
+        height: 48,
         color: COLORS.COLOR_MAP[STRINGS.NATURE_TABLE[row][4]],
         padding: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
